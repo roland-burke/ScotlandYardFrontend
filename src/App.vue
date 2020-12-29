@@ -1,10 +1,20 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view />
+  <Header></Header>
+  <router-view :lobby="lobby" :model="model"></router-view>
+  <footer-component></footer-component>
 </template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import Header from "@/components/Header.vue"; // @ is an alias to /src
+
+export default defineComponent({
+  name: "App",
+  components: {
+    Header
+  }
+});
+</script>
 
 <style>
 #app {
