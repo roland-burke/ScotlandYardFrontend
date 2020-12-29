@@ -62,16 +62,15 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "Header",
   methods: {
-    callUndo: function () {
+    callUndo: function() {
       //this.$root.sendMessageOverWebsocket("undo")
     },
-    callRedo: function () {
+    callRedo: function() {
       //this.$root.sendMessageOverWebsocket("redo")
-    },
-  },
+    }
+  }
 });
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped></style>

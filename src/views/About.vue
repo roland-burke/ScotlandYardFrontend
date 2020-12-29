@@ -62,17 +62,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";// @ is an alias to /src
+import { defineComponent } from "vue"; // @ is an alias to /src
 
 export default defineComponent({
   name: "About",
   methods: {
-    backToMenu: function () {
+    backToMenu: function() {
       this.$router.push("/");
     },
-    backToGame: function () {
+    backToGame: function() {
       this.$router.push("/game");
-    },
-  },
+    }
+  }
 });
 </script>
