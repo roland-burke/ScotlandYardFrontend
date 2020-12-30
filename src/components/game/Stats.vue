@@ -58,3 +58,46 @@ export default defineComponent({
   }
 });
 </script>
+
+<style scoped>
+.stats-wrapper {
+    background-color: #96b9ec;
+    border: 2px solid #000000;
+    border-radius: 6px;
+    -webkit-box-shadow: 5px 5px 13px 0px #000000;
+    -moz-box-shadow:    5px 5px 13px 0px #000000;
+    box-shadow:         5px 5px 13px 0px #000000;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 69vh;
+    max-width: 19em;
+    min-width: 10em;
+    margin-bottom: 20px; /* prevent the shadow from being cut off */
+    pointer-events: all
+}
+
+.stats-wrapper:hover {
+    opacity: 0.3;
+}
+
+.stats-item {
+    background-color: #b2dbff;
+    border: 2px solid #25313e;
+    border-radius: 10px;
+    margin: 4px;
+    padding: 4px;
+    min-width: 7em;
+}
+
+.stats-ticket {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.ticket-icon-stats {
+    width: 30px;
+}
+</style>

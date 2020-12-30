@@ -56,6 +56,9 @@ export const store = createStore({
     UPDATE_LOBBY(state, lobby) {
       state.lobby = lobby;
     },
+    UPDATE_LOBBY_PLAYER(state, player) {
+      state.lobby.player = player;
+    },
     UPDATE_LOBBY_REGISTERED(state, value) {
       state.lobby.registered = value;
     },
@@ -87,6 +90,9 @@ export const store = createStore({
     updateLobby(context, lobby) {
       context.commit("UPDATE_LOBBY", lobby);
     },
+    updateLobbyPlayer(context, player) {
+      context.commit("UPDATE_LOBBY_PLAYER", player);
+    },
     lobbySetRegistered(context, value) {
       context.commit("UPDATE_LOBBY_REGISTERED", value);
     },
@@ -103,6 +109,9 @@ export const store = createStore({
     },
     clientPlayer(state) {
       return state.lobby.player[state.lobby.clientId];
+    },
+    clientPlayerReady(state) {
+      return state.lobby.player[state.lobby.clientId].ready;
     },
 
 
