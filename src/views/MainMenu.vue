@@ -1,4 +1,5 @@
 <template>
+<main role="main" class="d-flex align-items-center justify-content-center">
   <div class="main">
     <div class="index-wrapper">
       <div class="row my-3 d-flex justify-content-center">
@@ -17,6 +18,7 @@
       </div>
     </div>
   </div>
+  </main>
 </template>
 
 <script lang="js">
@@ -71,5 +73,13 @@ input[type="file"] {
 .main-menu-button:active {
   position: relative;
   top: 1px;
+}
+.main {
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 </style>

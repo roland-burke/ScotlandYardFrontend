@@ -6,15 +6,15 @@
       <label style="margin-right: 10px">Name:</label>
       <input
         v-if="changeName"
+        v-model="playerName"
         @keyup.enter="switchView"
         style="width: 15em"
         type="text"
         minlength="3"
         max="30"
-        value="Dt1"
       />
       <label v-if="!changeName" style="width: 15em">{{
-        playerNameComputed
+        getPlayerName
       }}</label>
       <div v-if="componentid != 0" class="d-flex justify-content-end">
         <button
@@ -47,12 +47,12 @@
       <label v-else>black</label>
       <div
         class="color-preview"
-        v-bind:style="{ 'background-color': player[componentid].color }"
+        v-bind:style="{ 'background-color': playerColor }"
       ></div>
     </div>
     <div class="player-item-content justify-content-end">
       <label style="margin-right: 10px">Ready:</label>
-      <div v-if="this.getClientPlayer().ready" class="ready-field-green"></div>
+      <div v-if="playerReady" class="ready-field-green"></div>
       <div v-else class="ready-field-red"></div>
     </div>
   </div>
@@ -65,12 +65,12 @@ export default defineComponent({
   name: "PlayerSettings",
   props: {
     componentid: Number,
-    player: Array,
-    enabled: Boolean
+    enabled: Boolean,
   },
   data: function() {
     return {
       changeName: false,
+      playerName: "empty",
       colors: [
         {
           name: "blue",
@@ -99,6 +99,12 @@ export default defineComponent({
       ]
     };
   },
+  mounted: function () {
+    this.clientPlayer = this.$store.getters.clientPlayer;
+    console.log(this.componentid)
+    console.log(this.$store.getters.lobby.player[0])
+    this.playerName = this.$store.getters.lobby.player[this.componentid].name;
+  },
   methods: {
     switchView: function () {
       this.changeName = !this.changeName;
@@ -110,14 +116,22 @@ export default defineComponent({
       }
     },
     getClientPlayer: function() {
-
-      //return this.player[this.componentid];
+      return this.$store.getters.lobby.player[this.componentid];
     },
     updatePlayer: function() {
-      //this.$parent.sendPlayerData();
+      this.$parent.sendPlayerData();
     }
   },
   computed: {
+    playerColor: function() {
+      return this.$store.getters.lobby.player[this.componentid].color;
+    },
+    getPlayerName: function () {
+      return this.$store.getters.lobby.player[this.componentid].name;
+    },
+    playerReady: function () {
+      return this.$store.getters.lobby.player[this.componentid].ready;
+    },
     playerNameComputed: {
       get() {
         //this function will determine what is displayed in the input
@@ -130,18 +144,6 @@ export default defineComponent({
         this.$emit("update:lobby.player", p);
       }
     },
-    readyComputed: {
-      get() {
-        //this function will determine what is displayed in the input
-        return this.getClientPlayer().ready;
-      },
-      set(rdy) {
-        //this function will run whenever the input changes
-        const p = this.getClientPlayer();
-        p.ready = rdy;
-        this.$emit("update:lobby.player", p);
-      }
-    }
   }
 });
 </script>

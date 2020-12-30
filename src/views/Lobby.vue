@@ -8,7 +8,7 @@
         <div class="d-flex justify-content-center" style="margin-top: 1em">
           <h3>Player</h3>
         </div>
-        <PlayerSettings v-for="n in 6" :key="n" :componentId="n">
+        <PlayerSettings v-for="n in $store.getters.lobby.player.length" :key="n - 1" :componentid="n - 1" :enabled="isEnabled">
         </PlayerSettings>
       </div>
       <div class="col-lg-3 lobby-panel d-flex flex-column">
@@ -41,7 +41,7 @@
           <button class="standard-button" v-on:click="startGame">Start</button>
         </div>
         <div class="d-flex justify-content-center" style="margin: 15px">
-          <button class="standard-button" v-on:click="getReady">Ready</button>
+          <button class="standard-button" v-on:click="setPlayerReady">Ready</button>
         </div>
       </div>
     </div>
@@ -55,38 +55,33 @@ import PlayerSettings from "@/components/PlayerSettings.vue";
 
 export default defineComponent({
   name: "lobby",
-  props: {
-    lobby: {
-      type: Object,
-      default: null,
-    },
-  },
   methods: {
     startGame: function () {
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(this.lobby.player),
+        body: JSON.stringify(this.$store.getters.lobby.player),
       };
       fetch("/init", requestOptions);
     },
-    getReady: function () {
-      const clientPlayer = this.lobby.player[this.lobby.clientId];
-      clientPlayer.ready = true;
+    setPlayerReady: function () {
+      this.$store.dispatch("setClientPlayerReady");
       this.sendPlayerData();
     },
     sendPlayerData: function () {
-      const jsPlayer = {
-        player: this.lobby.player,
-      };
       if (this.$root != null) {
-        this.$root.sendObjectOverWebsocket(jsPlayer, "lobby-change");
+        this.$root.sendPlayerOverWebsocket("lobby-change");
       }
     },
   },
   mounted: function () {
-    console.log("lobby: " + JSON.stringify(this.lobby));
+    console.log("lobby: " + JSON.stringify(this.$store.getters.lobby));
     this.$root.sendMessageOverWebsocket("register");
+  },
+  computed: {
+    isEnabled: function() {
+      return true;
+    }
   },
   components: {
     PlayerSettings,

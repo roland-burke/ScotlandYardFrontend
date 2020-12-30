@@ -1,6 +1,6 @@
 <template>
   <Header></Header>
-  <router-view :lobby="lobby" :model="model"></router-view>
+  <router-view :model="model"></router-view>
   <Footer></Footer>
 </template>
 
@@ -31,7 +31,7 @@ export default {
           "player: " + JSON.stringify(this.$store.getters.lobby.player)
         );
         //v.lobby.player = message.player;
-        this.$store.dispatch("updateLobby", message.player);
+        this.$store.dispatch("updateLobbyPlayer", message.player);
         console.log(
           "player_after_update: " +
             JSON.stringify(this.$store.getters.lobby.player)
@@ -62,8 +62,8 @@ export default {
       if (!this.$store.getters.lobby.registered) {
         if (this.$store.getters.lobby.clientId !== -1) {
           // Lobby not full
-          this.$store.commit("lobbySetRegistered", true);
-          this.$store.commit("lobbySetClientId", messageId);
+          this.$store.dispatch("lobbySetRegistered", true);
+          this.$store.dispatch("lobbySetClientId", messageId);
           //this.lobby.registered = true;
           //this.lobby.clientId = messageId;
           //this.$emit("update:lobby", this.lobby);
@@ -77,6 +77,18 @@ export default {
       const obj = {
         event: msg,
         data: json
+      };
+      if (this.websocket.readyState === WebSocket.OPEN) {
+        console.log("send: " + JSON.stringify(obj));
+        this.websocket.send(JSON.stringify(obj));
+      } else {
+        console.log("Could not send data. Websocket is not open.");
+      }
+    },
+    sendPlayerOverWebsocket: function(msg) {
+      const obj = {
+        event: msg,
+        data: {player: this.$store.getters.lobby.player}
       };
       if (this.websocket.readyState === WebSocket.OPEN) {
         console.log("send: " + JSON.stringify(obj));
@@ -123,15 +135,6 @@ body {
   height: 100%;
   font-family: Michroma;
   background-image: url('~@/assets/map_large_small_opacity.png');
-}
-
-.main {
-  display: flex;
-  margin: 0;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
 }
 
 #about {
@@ -206,5 +209,69 @@ body {
 
 .standard-button-small:disabled {
   color: #d2d2d2;
+}
+
+/* The container */
+.radio-button-label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radio-button-label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.radio-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.radio-button-label:hover input ~ .radio-button {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.radio-button-label input:checked ~ .radio-button {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.radio-button:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radio-button-label input:checked ~ .radio-button:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radio-button-label .radio-button:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
 }
 </style>

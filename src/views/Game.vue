@@ -126,11 +126,7 @@
       </div>
       <div class="row fixed-bottom" style="z-index: 1">
         <div class="col d-flex justify-content-center w-25">
-          <div
-            class="game-controls"
-            id="game-controls"
-            style="pointer-events: all"
-          >
+          <div class="game-controls" id="game-controls" style="pointer-events: all">
             <div v-if="model !== null">
               <Controls v-bind:name="extractCurrentPlayer.name" ref="Controls"></Controls>
             </div>
