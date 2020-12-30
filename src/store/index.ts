@@ -14,19 +14,19 @@ player {
 
 export type State = {
   gameRunning: false,
-    lobby: {
-      maxPlayers: 7,
-      registered: false,
-      clientId: 0,
-      player: [
-        {
-          id: 0,
-          name: 'MrX',
-          color: '#000000',
-          ready: false
-        }
-      ]
-    }
+  lobby: {
+    maxPlayers: 7,
+    registered: false,
+    clientId: 0,
+    player: [
+      {
+        id: 0,
+        name: 'MrX',
+        color: '#000000',
+        ready: false
+      }
+    ]
+  }
 }
 
 export const store = createStore({
@@ -73,25 +73,25 @@ export const store = createStore({
   },
   actions: {
     setGameRunningTrue(context) {
-      context.commit('SET_GAME_RUNNING', true);
+      context.commit("SET_GAME_RUNNING", true);
     },
     setGameRunningFalse(context) {
-      context.commit('SET_GAME_RUNNING', false);
+      context.commit("SET_GAME_RUNNING", false);
     },
     setClientPlayerReady(context) {
-      context.commit('SET_PLAYER_READY', true);
+      context.commit("SET_PLAYER_READY", true);
     },
     setClientPlayerUnReady(context) {
-      context.commit('SET_PLAYER_READY', false);
+      context.commit("SET_PLAYER_READY", false);
     },
     updateLobby(context, lobby) {
-      context.commit('UPDATE_LOBBY', lobby);
+      context.commit("UPDATE_LOBBY", lobby);
     },
     lobbySetRegistered(context, value) {
-      context.commit('UPDATE_LOBBY_REGISTERED', value);
+      context.commit("UPDATE_LOBBY_REGISTERED", value);
     },
     lobbySetClientId(context, value) {
-      context.commit('UPDATE_LOBBY_CLIENTID', value);
+      context.commit("UPDATE_LOBBY_CLIENTID", value);
     }
   },
   getters: {

@@ -13,7 +13,7 @@ body {
     margin: 0px 0px 0px 0px !important;
     height: 100%;
     font-family: Michroma;
-    background-image: url("/assets/images/map_large_small_opacity.png");
+    background-image: url("~@/assets/map_large_small_opacity.png");
 }
 
 .main {

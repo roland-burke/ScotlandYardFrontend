@@ -49,9 +49,9 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="js">
 import { defineComponent } from "vue"; // @ is an alias to /src
-import PlayerSettings from "@/components/playerSettings.vue";
+import PlayerSettings from "@/components/PlayerSettings.vue";
 
 export default defineComponent({
   name: "lobby",
@@ -79,7 +79,9 @@ export default defineComponent({
       const jsPlayer = {
         player: this.lobby.player,
       };
-      this.$root.sendObjectOverWebsocket(jsPlayer, "lobby-change");
+      if (this.$root != null) {
+        this.$root.sendObjectOverWebsocket(jsPlayer, "lobby-change");
+      }
     },
   },
   mounted: function () {

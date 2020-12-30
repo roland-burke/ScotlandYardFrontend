@@ -19,15 +19,15 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
-    path: '/lobby',
-    name: 'Lobby',
+    path: "/lobby",
+    name: "Lobby",
     component: Lobby
-},
-{
-    path: '/game',
-    name: 'Game',
+  },
+  {
+    path: "/game",
+    name: "Game",
     component: Game
-}
+  }
 ];
 
 const router = createRouter({

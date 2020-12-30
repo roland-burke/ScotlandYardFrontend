@@ -16,11 +16,10 @@
         <router-link class="main-menu-button" to="/about">About</router-link>
       </div>
     </div>
-    <link rel="stylesheet" href="/assets/stylesheets/index.css" />
   </div>
 </template>
 
-<script lang="ts">
+<script lang="js">
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -29,6 +28,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
+/* ==== Index ==== */
+
 input[type="file"] {
   display: none;
 }

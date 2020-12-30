@@ -4,7 +4,7 @@
   <Footer></Footer>
 </template>
 
-<script>
+<script lang="js">
 import Header from "@/components/Header.vue"; // @ is an alias to /src
 import Footer from "@/components/Footer.vue";
 import $ from "jquery";
@@ -19,47 +19,45 @@ export default {
     };
   },
   mounted: function () {
-    const that = this;
-
-    this.websocket.onmessage = function (rawMessage) {
+    this.websocket.onmessage = (rawMessage) => {
       const message = $.parseJSON(rawMessage.data);
       console.log(message);
       if (message.event === "ModelChanged") {
-        that.model = message;
+        this.model = message;
       } else if (message.event === "register") {
-        that.handleRegister(message.id);
+        this.handleRegister(message.id);
       } else if (message.event === "lobby-change") {
         console.log(
-          "player: " + JSON.stringify(that.$store.getters.lobby.player)
+          "player: " + JSON.stringify(this.$store.getters.lobby.player)
         );
         //v.lobby.player = message.player;
-        that.$store.dispatch("updateLobby", message.player);
+        this.$store.dispatch("updateLobby", message.player);
         console.log(
           "player_after_update: " +
-            JSON.stringify(that.$store.getters.lobby.player)
+            JSON.stringify(this.$store.getters.lobby.player)
         );
       } else if (message.event === "StartGame") {
-        console.log(that.$store.getters.getGameRunning);
-        that.$store.commit("setGameRunningTrue");
-        console.log(that.$store.getters.getGameRunning);
-        that.$router.push("/game");
+        console.log(this.$store.getters.getGameRunning);
+        this.$store.commit("setGameRunningTrue");
+        console.log(this.$store.getters.getGameRunning);
+        this.$router.push("/game");
       } else if (message.event === "GameFinished") {
-        that.$store.commit("setGameRunningFalse");
+        this.$store.commit("setGameRunningFalse");
       }
     };
 
-    this.websocket.onopen = function () {
-      setInterval(function () {
-        that.sendMessageOverWebsocket("ping");
+    this.websocket.onopen = () => {
+      setInterval(() => {
+        this.sendMessageOverWebsocket("ping");
       }, 10000);
     };
-    this.websocket.onclose = function () {
+    this.websocket.onclose = () => {
       //clearInterval(v.interval);
-      that.sendMessageOverWebsocket("deregister");
+      this.sendMessageOverWebsocket("deregister");
     };
   },
   methods: {
-    handleRegister: function (messageId: number) {
+    handleRegister: function (messageId) {
       this.$store.getters.lobby.registered;
       if (!this.$store.getters.lobby.registered) {
         if (this.$store.getters.lobby.clientId !== -1) {
@@ -75,10 +73,10 @@ export default {
         }
       }
     },
-    sendObjectOverWebsocket: function (json: any, msg: any) {
+    sendObjectOverWebsocket: function(json, msg) {
       const obj = {
         event: msg,
-        data: json,
+        data: json
       };
       if (this.websocket.readyState === WebSocket.OPEN) {
         console.log("send: " + JSON.stringify(obj));
@@ -87,7 +85,7 @@ export default {
         console.log("Could not send data. Websocket is not open.");
       }
     },
-    sendMessageOverWebsocket: function (msg: any) {
+    sendMessageOverWebsocket: function(msg) {
       const obj = {
         event: msg,
       };
@@ -99,7 +97,7 @@ export default {
     },
   },
   computed: {
-    extractCurrentPlayer: function () {
+    extractCurrentPlayer: function() {
       for (const player of this.model.player.players) {
         if (player.current === true) {
           return player;
@@ -124,7 +122,7 @@ body {
   margin: 0px 0px 0px 0px !important;
   height: 100%;
   font-family: Michroma;
-  background-image: url("/assets/images/map_large_small_opacity.png");
+  background-image: url('~@/assets/map_large_small_opacity.png');
 }
 
 .main {

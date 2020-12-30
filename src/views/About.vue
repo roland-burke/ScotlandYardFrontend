@@ -61,7 +61,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="js">
 import { defineComponent } from "vue"; // @ is an alias to /src
 
 export default defineComponent({
