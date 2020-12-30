@@ -46,68 +46,29 @@
           v-on:change="commitSelectedTicketType"
           class="ticket-radio"
           type="radio"
-          checked="true"
-          id="taxi"
-          value="t"
+          id="black"
+          value="x"
           name="transport"
         />
-        <img src="~@/assets/Taxi.svg" class="ticket-icon" />
-      </label>
-    </div>
-    <div>
-      <label>
+        <img class="ticket-icon" src="~@/assets/Black.svg" />
+      </div>
+      <div v-else>
         <input
           v-on:change="commitSelectedTicketType"
           class="ticket-radio"
+          disabled="true"
           type="radio"
-          id="bus"
-          value="b"
+          id="black"
+          value="x"
           name="transport"
         />
-        <img src="~@/assets/Bus.svg" class="ticket-icon" />
-      </label>
-    </div>
-    <div>
-      <label>
-        <input
-          class="ticket-radio"
-          type="radio"
-          id="underground"
-          value="u"
-          name="transport"
+        <img
+          class="ticket-icon"
+          src="~@/assets/Black.svg"
+          style="opacity: 40%"
         />
-        <img class="ticket-icon" src="~@/assets/Underground.svg" />
-      </label>
-    </div>
-    <div>
-      <label>
-        <div v-if="name == 'MrX'">
-          <input
-            class="ticket-radio"
-            type="radio"
-            id="black"
-            value="x"
-            name="transport"
-          />
-          <img class="ticket-icon" src="~@/assets/Black.svg" />
-        </div>
-        <div v-else>
-          <input
-            class="ticket-radio"
-            disabled="true"
-            type="radio"
-            id="black"
-            value="x"
-            name="transport"
-          />
-          <img
-            class="ticket-icon"
-            src="~@/assets/Black.svg"
-            style="opacity: 40%"
-          />
-        </div>
-      </label>
-    </div>
+      </div>
+    </label>
   </div>
 </template>
 
