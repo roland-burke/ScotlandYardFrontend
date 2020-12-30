@@ -32,6 +32,7 @@ export type State = {
 export const store = createStore({
   state: {
     gameRunning: false,
+    currentTicketType: 0,
     lobby: {
       maxPlayers: 7,
       registered: false,
@@ -62,8 +63,9 @@ export const store = createStore({
     UPDATE_LOBBY_CLIENTID(state, value) {
       state.lobby.clientId = value;
     },
-
-
+    ŜET_CURRENT_TICKET_TYPE(state, value) {
+      state.currentTicketType = value;
+    },
     setGameRunningTrue(state) {
       state.gameRunning = true;
     },
@@ -92,6 +94,9 @@ export const store = createStore({
     },
     lobbySetClientId(context, value) {
       context.commit("UPDATE_LOBBY_CLIENTID", value);
+    },
+    setCurrentTicketType(context, value) {
+      context.commit("ŜET_CURRENT_TICKET_TYPE", value);
     }
   },
   getters: {
@@ -104,8 +109,9 @@ export const store = createStore({
     clientPlayer(state) {
       return state.lobby.player[state.lobby.clientId];
     },
-
-
+    getCurrentTicketType(state) {
+      return state.currentTicketType;
+    },
     getGameRunning: state => {
       return state.gameRunning;
     }

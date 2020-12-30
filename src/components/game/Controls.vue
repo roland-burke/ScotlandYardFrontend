@@ -2,6 +2,7 @@
   <div>
     <label>
       <input
+        v-on:change="commitSelectedTicketType"
         class="ticket-radio"
         type="radio"
         checked="true"
@@ -15,6 +16,7 @@
   <div>
     <label>
       <input
+        v-on:change="commitSelectedTicketType"
         class="ticket-radio"
         type="radio"
         id="bus"
@@ -27,6 +29,7 @@
   <div>
     <label>
       <input
+        v-on:change="commitSelectedTicketType"
         class="ticket-radio"
         type="radio"
         id="underground"
@@ -40,6 +43,7 @@
     <label>
       <div v-if="name == 'MrX'">
         <input
+          v-on:change="commitSelectedTicketType"
           class="ticket-radio"
           type="radio"
           id="black"
@@ -50,6 +54,7 @@
       </div>
       <div v-else>
         <input
+          v-on:change="commitSelectedTicketType"
           class="ticket-radio"
           disabled="true"
           type="radio"
@@ -74,6 +79,16 @@ export default defineComponent({
   name: "Controls",
   props: {
     name: String
+  },
+  methods: {
+    commitSelectedTicketType: function() {
+        const radios = document.getElementsByName('transport');
+        for (let i = 0, length = radios.length; i < length; i++) {
+            if (radios[i].checked) {
+                this.$store.commit("setCurrentTicketType", radios[i].value);
+            }
+        }
+    }, 
   }
 });
 </script>

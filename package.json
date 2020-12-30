@@ -9,8 +9,12 @@
   },
   "dependencies": {
     "bootstrap": "^4.5.3",
+    "bootstrap-vue": "^2.21.1",
     "core-js": "^3.6.5",
     "jquery": "^3.5.1",
+    "jquery-ui": "^1.12.1",
+    "jquery-ui-dist": "^1.12.1",
+    "popper.js": "^1.16.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"

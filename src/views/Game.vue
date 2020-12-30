@@ -6,7 +6,8 @@
       class="winning-background"
     ></div>
 
-    <Map v-if="model !== null" v-bind:playersdata="model.player" ref="gamemap"> </Map>
+    <Map v-if="model !== null" v-bind:playersdata="model.player" ref="Map">
+    </Map>
 
     <div
       class="container-fluid"
@@ -35,7 +36,7 @@
         <div class="col-lg-2">
           <div class="history-wrapper" id="history-wrapper">
             <div v-if="model !== null">
-              <History v-bind:historyobject="model.history"></History>
+              <History v-bind:historyobject="model.history" ref="History"></History>
             </div>
             <div v-else>
               <h2>Loading..</h2>
@@ -115,7 +116,7 @@
         <div class="col-lg-2 d-flex justify-content-end">
           <div class="stats-wrapper" id="stats-wrapper">
             <div v-if="model !== null">
-              <Stats v-bind:playersdata="model.player"></Stats>
+              <Stats v-bind:playersdata="model.player" ref="Stats"></Stats>
             </div>
             <div v-else>
               <h2>Loading..</h2>
@@ -131,7 +132,7 @@
             style="pointer-events: all"
           >
             <div v-if="model !== null">
-              <Controls v-bind:name="extractCurrentPlayer.name"></Controls>
+              <Controls v-bind:name="extractCurrentPlayer.name" ref="Controls"></Controls>
             </div>
             <div v-else>
               <h2>Loading..</h2>
@@ -159,7 +160,7 @@ export default defineComponent({
     data: function() {
         return {
             audio: null,
-            showWinningDialog: true
+            showWinningDialog: true,
         }
     },
     watch: {
@@ -198,7 +199,14 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style>
+/*
+Theme Name: Scotty Custom
+Description: ScotlandYard online Game
+Author: Roland Burke, Tim Koehler
+Tags: Scala, Play, ScotlandYard
+*/
+
 /* ==== Game ==== */
 
 .winning-dialog {
