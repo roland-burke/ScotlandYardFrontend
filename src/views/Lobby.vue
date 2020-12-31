@@ -62,7 +62,7 @@ export default defineComponent({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(this.$store.getters.lobby.player),
       };
-      fetch("/init", requestOptions);
+      fetch("http://localhost:9000/init", requestOptions);
     },
     setPlayerReady: function () {
       this.$store.dispatch("setClientPlayerReady");
