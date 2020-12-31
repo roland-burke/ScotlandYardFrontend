@@ -45,6 +45,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css?family=Michroma");
+
 header {
   background-color: #93b2e0;
   box-shadow: 0 0 25px 0 black;

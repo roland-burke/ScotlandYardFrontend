@@ -74,6 +74,9 @@ export const store = createStore({
     },
     setGameRunningFalse(state) {
       state.gameRunning = false;
+    },
+    UPDATE_CLIENT_PLAYER_NAME(state, newName) {
+      state.lobby.player[state.lobby.clientId].name = newName;
     }
   },
   actions: {
@@ -94,6 +97,9 @@ export const store = createStore({
     },
     updateLobbyPlayer(context, player) {
       context.commit("UPDATE_LOBBY_PLAYER", player);
+    },
+    updateClientPlayerName(context, newName) {
+      context.commit("UPDATE_CLIENT_PLAYER_NAME", newName);
     },
     lobbySetRegistered(context, value) {
       context.commit("UPDATE_LOBBY_REGISTERED", value);

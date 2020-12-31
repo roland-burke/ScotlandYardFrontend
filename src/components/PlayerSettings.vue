@@ -44,7 +44,7 @@
           {{ color.name }}
         </option>
       </select>
-      <label v-else>black</label>
+      <label v-else>{{playerColorName}}</label>
       <div
         class="color-preview"
         v-bind:style="{ 'background-color': playerColor }"
@@ -110,9 +110,8 @@ export default defineComponent({
       this.changeName = !this.changeName;
       if (this.changeName === false) {
         // second button press
-        const p = this.player;
-        this.$emit("update:lobby.player", p);
-        this.updatePlayer();
+        this.$store.dispatch("updateClientPlayerName", this.playerName)
+        this.$parent.sendPlayerData();
       }
     },
     getClientPlayer: function() {
@@ -125,6 +124,17 @@ export default defineComponent({
   computed: {
     playerColor: function() {
       return this.$store.getters.lobby.player[this.componentid].color;
+    },
+    playerColorName: function() {
+      const color = this.$store.getters.lobby.player[this.componentid].color;
+      console.log(this.componentid)
+      const result = this.colors.find(col => col.value === color)
+      console.log('result: ' + result)
+      if(result === undefined) {
+        return 'black'
+      } else {
+        return result.name;
+      }
     },
     getPlayerName: function () {
       return this.$store.getters.lobby.player[this.componentid].name;

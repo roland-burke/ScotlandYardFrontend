@@ -127,7 +127,6 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css?family=Michroma");
-
 /* === General === */
 
 body {

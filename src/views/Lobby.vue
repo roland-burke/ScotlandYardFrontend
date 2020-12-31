@@ -8,7 +8,7 @@
         <div class="d-flex justify-content-center" style="margin-top: 1em">
           <h3>Player</h3>
         </div>
-        <PlayerSettings v-for="n in $store.getters.lobby.player.length" :key="n - 1" :componentid="n - 1" :enabled="isEnabled">
+        <PlayerSettings v-for="(n, i) in $store.getters.lobby.player.length" :key="i" :componentid="i" :enabled="checkEnabled(i)">
         </PlayerSettings>
       </div>
       <div class="col-lg-3 lobby-panel d-flex flex-column">
@@ -73,14 +73,17 @@ export default defineComponent({
         this.$root.sendPlayerOverWebsocket("lobby-change");
       }
     },
+    checkEnabled: function(n) {
+      return n === this.$store.getters.lobby.clientId
+    }
   },
   mounted: function () {
     console.log("lobby: " + JSON.stringify(this.$store.getters.lobby));
     this.$root.sendMessageOverWebsocket("register");
   },
   computed: {
-    isEnabled: function() {
-      return true;
+    isEnabled: function(n) {
+      return n === this.$store.getters.lobby.clientId
     }
   },
   components: {
