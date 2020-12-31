@@ -100,10 +100,6 @@ export default defineComponent({
                     ctx.stroke();
                 }
             };
-            img.onerror = (errorMsg) => {
-                console.log("Image failed!:");
-                console.log(errorMsg);
-            };
         }
     },
     watch: {

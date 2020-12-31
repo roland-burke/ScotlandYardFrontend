@@ -85,10 +85,10 @@ export default defineComponent({
         const radios = document.getElementsByName('transport');
         for (let i = 0, length = radios.length; i < length; i++) {
             if (radios[i].checked) {
-                this.$store.commit("setCurrentTicketType", radios[i].value);
+              this.$store.dispatch("setCurrentTicketType", radios[i].value);
             }
         }
-    }, 
+    }
   }
 });
 </script>

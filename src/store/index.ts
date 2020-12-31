@@ -1,38 +1,9 @@
 import { createStore } from "vuex";
 
-
-/*
-
-player {
-  id: 0,
-  name: 'MrX',
-  color: '#0000ff',
-  ready: false
-}
-
-*/
-
-export type State = {
-  gameRunning: false,
-  lobby: {
-    maxPlayers: 7,
-    registered: false,
-    clientId: 0,
-    player: [
-      {
-        id: 0,
-        name: 'MrX',
-        color: '#000000',
-        ready: false
-      }
-    ]
-  }
-}
-
 export const store = createStore({
   state: {
     gameRunning: false,
-    currentTicketType: 0,
+    currentTicketType: "t",
     lobby: {
       maxPlayers: 7,
       registered: false,

@@ -45,7 +45,6 @@
         </div>
       </div>
     </div>
-    <link rel="stylesheet" href="/assets/stylesheets/lobby.css" />
   </div>
 </template>
 

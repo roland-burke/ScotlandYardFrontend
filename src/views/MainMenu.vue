@@ -1,23 +1,23 @@
 <template>
-<main role="main" class="d-flex align-items-center justify-content-center">
-  <div class="main">
-    <div class="index-wrapper">
-      <div class="row my-3 d-flex justify-content-center">
-        <router-link class="main-menu-button" to="/lobby"
-          >Start Game</router-link
-        >
-      </div>
-      <div class="row my-3 d-flex justify-content-center">
-        <label class="main-menu-button">
-          <input type="file" />
-          Load Game
-        </label>
-      </div>
-      <div class="row d-flex justify-content-center">
-        <router-link class="main-menu-button" to="/about">About</router-link>
+  <main role="main" class="d-flex align-items-center justify-content-center">
+    <div class="main">
+      <div class="index-wrapper">
+        <div class="row my-3 d-flex justify-content-center">
+          <router-link class="main-menu-button" to="/lobby"
+            >Start Game</router-link
+          >
+        </div>
+        <div class="row my-3 d-flex justify-content-center">
+          <label class="main-menu-button">
+            <input type="file" />
+            Load Game
+          </label>
+        </div>
+        <div class="row d-flex justify-content-center">
+          <router-link class="main-menu-button" to="/about">About</router-link>
+        </div>
       </div>
     </div>
-  </div>
   </main>
 </template>
 
@@ -30,7 +30,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 /* ==== Index ==== */
 
 input[type="file"] {
@@ -75,11 +74,11 @@ input[type="file"] {
   top: 1px;
 }
 .main {
-    display: flex;
-    margin: 0;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 </style>

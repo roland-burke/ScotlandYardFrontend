@@ -91,14 +91,14 @@
                   v-if="model.winningPlayer === 'MrX'"
                   width="250px"
                   height="250px"
-                  src="assets/images/mrx-win.PNG"
+                  src="~@/assets/mrx-win.png"
                   alt="MrX"
                 />
                 <img
                   v-else
                   width="250px"
                   height="250px"
-                  src="assets/images/detective-win.PNG"
+                  src="~@/assets/detective-win.png"
                   alt="Detective"
                 />
               </div>
@@ -159,12 +159,13 @@ export default defineComponent({
             showWinningDialog: true,
         }
     },
-    watch: {
+    /*watch: {
         model: function() {
             if (this.model.win) {
                 if (this.audio === null) {
                     const track = Math.floor(Math.random() * Math.floor(3));
-                    this.audio = new Audio('~@/assets/audio/' + track + '.mp3');
+                    const trackString = "../../assets/audio/" + track + ".mp3"
+                    this.audio = new Audio(require(trackString));
                     this.audio.play();
                 }
             } else {
@@ -174,7 +175,7 @@ export default defineComponent({
                 }
             }
         }
-    },
+    },*/
     computed: {
         extractCurrentPlayer: function() {
             for (const player of this.model.player.players) {
