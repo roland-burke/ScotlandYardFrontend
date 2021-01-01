@@ -76,3 +76,13 @@ export default defineComponent({
   }
 });
 </script>
+
+<style scoped>
+#about {
+    display: inline-block;
+    text-align: left;
+    max-width: 60%;
+    margin-top: 8vh;
+    margin-bottom: 40px;
+}
+</style>

@@ -133,6 +133,15 @@ export default {
    font-family: Michroma;
 }
 
+.main {
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 body {
   margin: 0px 0px 0px 0px !important;
   height: 100%;

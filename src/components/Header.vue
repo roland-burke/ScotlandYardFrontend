@@ -35,17 +35,16 @@ export default defineComponent({
   name: "Header",
   methods: {
     callUndo: function () {
-      //this.$root.sendMessageOverWebsocket("undo")
+      this.$root.sendMessageOverWebsocket("undo")
     },
     callRedo: function () {
-      //this.$root.sendMessageOverWebsocket("redo")
+      this.$root.sendMessageOverWebsocket("redo")
     },
   },
 });
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Michroma");
 
 header {
   background-color: #93b2e0;

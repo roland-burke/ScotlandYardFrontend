@@ -113,3 +113,21 @@ export default defineComponent({
     }
 });
 </script>
+
+<style scoped>
+/* === Map === */
+
+.map-wrapper {
+  background-color: #ffffff;
+  width: 100vw;
+  height: 100vh;
+  cursor: grab;
+  transform: translate3d(0, 0, 0);
+  z-index: 0;
+  overflow: hidden;
+}
+
+#canvas {
+  overflow: hidden;
+}
+</style>
