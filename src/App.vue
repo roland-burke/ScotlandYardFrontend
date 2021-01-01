@@ -129,6 +129,10 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Michroma");
 /* === General === */
 
+#app {
+   font-family: Michroma;
+}
+
 body {
   margin: 0px 0px 0px 0px !important;
   height: 100%;

@@ -89,17 +89,17 @@
               <div class="row d-flex justify-content-center" id="win-image">
                 <img
                   v-if="model.winningPlayer === 'MrX'"
-                  width="250px"
-                  height="250px"
-                  src="~@/assets/mrx-win.png"
-                  alt="MrX"
+                  :width="250"
+                  :height="250"
+                  :src="require('../assets/mrx-win.png')"
+                  :alt="MrX"
                 />
                 <img
                   v-else
-                  width="250px"
-                  height="250px"
-                  src="~@/assets/detective-win.png"
-                  alt="Detective"
+                  :width="250"
+                  :height="250"
+                  :src="require('../assets/detective-win.png')"
+                  :alt="Detective"
                 />
               </div>
               <div
