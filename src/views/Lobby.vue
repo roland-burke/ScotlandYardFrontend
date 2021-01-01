@@ -56,12 +56,7 @@ export default defineComponent({
   name: "lobby",
   methods: {
     startGame: function () {
-      const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(this.$store.getters.lobby.player),
-      };
-      fetch("http://localhost:9000/init", requestOptions);
+      this.$root.sendMessageOverWebsocket("init");
     },
     setPlayerReady: function () {
       this.$store.dispatch("setClientPlayerReady");
