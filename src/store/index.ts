@@ -37,8 +37,11 @@ export const store = createStore({
     UPDATE_LOBBY_CLIENTID(state, value) {
       state.lobby.clientId = value;
     },
-    ŜET_CURRENT_TICKET_TYPE(state, value) {
+    SET_CURRENT_TICKET_TYPE(state, value) {
       state.currentTicketType = value;
+    },
+    SET_PLAYER_COLOR(state, color) {
+      state.lobby.player[state.lobby.clientId].color = color;
     },
     setGameRunningTrue(state) {
       state.gameRunning = true;
@@ -78,8 +81,11 @@ export const store = createStore({
     lobbySetClientId(context, value) {
       context.commit("UPDATE_LOBBY_CLIENTID", value);
     },
+    setPlayerColor(context, color) {
+      context.commit("SET_PLAYER_COLOR", color);
+    },
     setCurrentTicketType(context, value) {
-      context.commit("ŜET_CURRENT_TICKET_TYPE", value);
+      context.commit("SET_CURRENT_TICKET_TYPE", value);
     }
   },
   getters: {

@@ -32,20 +32,26 @@
         v-if="componentid != 0 && enabled"
         id="name-select"
         name="playerIndex"
+        v-model="selected"
+        @change="onChange($event)"
       >
-        <!-- The $ symbol is escaped with '' because of jQuerry -->
         <option
           v-for="color in colors"
           :key="color.name"
-          name="player"
           v-bind:style="{ color: color.value }"
-          value="color-'$'{index}"
+          v-bind:value="{ value: color.value, name: color.name }"
         >
           {{ color.name }}
         </option>
       </select>
       <label v-else>{{playerColorName}}</label>
       <div
+      v-if="enabled"
+        class="color-preview"
+        v-bind:style="{ 'background-color': selected.value }"
+      ></div>
+      <div
+      v-else
         class="color-preview"
         v-bind:style="{ 'background-color': playerColor }"
       ></div>
@@ -71,7 +77,12 @@ export default defineComponent({
     return {
       changeName: false,
       playerName: "empty",
+      selected: {value: '#000000', name: 'black'},
       colors: [
+        {
+          name: "black",
+          value: "#000000"
+        },
         {
           name: "blue",
           value: "#0000ff"
@@ -103,6 +114,7 @@ export default defineComponent({
     this.clientPlayer = this.$store.getters.clientPlayer;
     console.log(this.componentid)
     console.log(this.$store.getters.lobby.player[0])
+    this.selected = this.colors[this.componentid];
     this.playerName = this.$store.getters.lobby.player[this.componentid].name;
   },
   methods: {
@@ -113,6 +125,11 @@ export default defineComponent({
         this.$store.dispatch("updateClientPlayerName", this.playerName)
         this.$parent.sendPlayerData();
       }
+    },
+    onChange: function (event) {
+      console.log('OnChange');
+      this.$store.dispatch("setPlayerColor", this.selected.value);
+      this.$parent.sendPlayerData();
     },
     getClientPlayer: function() {
       return this.$store.getters.lobby.player[this.componentid];
