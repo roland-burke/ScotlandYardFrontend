@@ -11,10 +11,12 @@
 </template>
 
 <script lang="js">
+import { WebsocketMixin } from "@/mixins/websocketMixin.js"
 import $ from 'jquery'
 
 export default {
   name: "Map",
+  mixins: [WebsocketMixin],
   props: {
         playersdata: Object
   },
@@ -34,7 +36,7 @@ export default {
               y: parseInt(clickCoords.y)
           }
           console.log(data);
-          this.$root.sendObjectOverWebsocket(data, 'move')
+          this.sendObjectOverWebsocket(data, 'move')
           this.redraw()
         },
         getXY: function(event) {

@@ -54,9 +54,11 @@
 
 <script lang="js">
 import PlayerSettings from "@/components/PlayerSettings.vue";
+import { WebsocketMixin } from "@/mixins/websocketMixin.js"
 
 export default {
   name: "lobby",
+  mixins: [WebsocketMixin],
   methods: {
     setPlayerReady: function() {
       this.$store.dispatch("setClientPlayerReady");
@@ -64,7 +66,7 @@ export default {
     },
     sendPlayerData: function(){
       if (this.$parent != null) {
-        this.$parent.sendPlayerOverWebsocket("lobby-change");
+        this.sendPlayerOverWebsocket("lobby-change");
       }
     },
     checkEnabled: function(n) {
@@ -73,7 +75,7 @@ export default {
   },
   mounted: function() {
     console.log("lobby: " + JSON.stringify(this.$store.getters.lobby));
-    this.$parent.sendMessageOverWebsocket("register");
+    this.sendMessageOverWebsocket("register");
   },
   computed: {
     isEnabled: function(n) {

@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     gameRunning: false,
     currentTicketType: "t",
+    websocket: Object,
     lobby: {
       maxPlayers: 7,
       registered: false,
@@ -54,6 +55,9 @@ export default new Vuex.Store({
     },
     UPDATE_CLIENT_PLAYER_NAME(state, newName) {
       state.lobby.player[state.lobby.clientId].name = newName;
+    },
+    SET_WEBSOCKET(state, value) {
+      state.websocket = value;
     }
   },
   actions: {
@@ -89,6 +93,9 @@ export default new Vuex.Store({
     },
     setCurrentTicketType(context, value) {
       context.commit("SET_CURRENT_TICKET_TYPE", value);
+    },
+    setWebsocket(context, value) {
+      context.commit("SET_WEBSOCKET", value);
     }
   },
   getters: {
@@ -106,6 +113,9 @@ export default new Vuex.Store({
     },
     getGameRunning: state => {
       return state.gameRunning;
+    },
+    getWebsocket: state => {
+      return state.websocket;
     }
   }
 });

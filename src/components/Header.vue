@@ -57,14 +57,17 @@
 </template>
 
 <script lang="js">
+import { WebsocketMixin } from "@/mixins/websocketMixin.js"
+
 export default{
   name: "Header",
+  mixins: [WebsocketMixin],
   methods: {
     callUndo: function () {
-      this.$parent.sendMessageOverWebsocket("undo")
+      this.sendMessageOverWebsocket("undo")
     },
     callRedo: function () {
-      this.$parent.sendMessageOverWebsocket("redo")
+      this.sendMessageOverWebsocket("redo")
     },
   },
 };
