@@ -66,7 +66,7 @@ export default {
     },
     sendPlayerData: function(){
       if (this.$parent != null) {
-        this.sendPlayerOverWebsocket("lobby-change");
+        this.sendObjectOverWebsocket( {player: this.$store.getters.lobby.player }, "lobby-change");
       }
     },
     checkEnabled: function(n) {

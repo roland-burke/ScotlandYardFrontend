@@ -13,18 +13,6 @@ export const WebsocketMixin = {
                 console.log("Could not send data. Websocket is not open.");
             }
         },
-        sendPlayerOverWebsocket: function (msg) {
-            const obj = {
-                event: msg,
-                data: { player: this.$store.getters.lobby.player }
-            };
-            if (this.$store.getters.getWebsocket.readyState === WebSocket.OPEN) {
-                console.log("send: " + JSON.stringify(obj));
-                this.$store.getters.getWebsocket.send(JSON.stringify(obj));
-            } else {
-                console.log("Could not send data. Websocket is not open.");
-            }
-        },
         sendMessageOverWebsocket: function (msg) {
             const obj = {
                 event: msg,
