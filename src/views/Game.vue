@@ -168,23 +168,11 @@ export default {
             showWinningDialog: true,
         }
     },
-    /*watch: {
-        model: function() {
-            if (this.model.win) {
-                if (this.audio === null) {
-                    const track = Math.floor(Math.random() * Math.floor(3));
-                    const trackString = "../../assets/audio/" + track + ".mp3"
-                    this.audio = new Audio(require(trackString));
-                    this.audio.play();
-                }
-            } else {
-                if (this.audio !== null) {
-                    this.audio.pause();
-                    this.audio = null;
-                }
-            }
-        }
-    },*/
+    watch: {
+      model: function() {
+        //console.log(JSON.stringify(this.model, null, 2)); // spacing level = 2
+      }
+    },
     computed: {
         extractCurrentPlayer: function() {
             for (const player of this.model.player.players) {

@@ -19,7 +19,7 @@
 <script lang="js">
 
 export default{
-  name: "HeadLine",
+  name: "History",
   props: {
     historyobject: Object
   }
