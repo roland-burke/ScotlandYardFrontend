@@ -38,9 +38,6 @@
     <div class="row">
       <div class="col d-flex justify-content-center lobby-bottom-panel">
         <div class="d-flex justify-content-center" style="margin: 15px">
-          <button class="standard-button" v-on:click="startGame">Start</button>
-        </div>
-        <div class="d-flex justify-content-center" style="margin: 15px">
           <button class="standard-button" v-on:click="setPlayerReady">Ready</button>
         </div>
       </div>
@@ -55,9 +52,6 @@ import PlayerSettings from "@/components/PlayerSettings.vue";
 export default defineComponent({
   name: "lobby",
   methods: {
-    startGame: function () {
-      this.$root.sendMessageOverWebsocket("init");
-    },
     setPlayerReady: function () {
       this.$store.dispatch("setClientPlayerReady");
       this.sendPlayerData();

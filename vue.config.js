@@ -1,6 +1,8 @@
 // vue.config.js
 module.exports = {
-    // options...
+    publicPath: process.env.NODE_ENV === 'production'
+    ? '/production-sub-path/'
+    : '/',
     devServer: {
           proxy: 'http://localhost:9000/init',
       }

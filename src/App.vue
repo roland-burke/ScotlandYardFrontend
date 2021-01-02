@@ -30,7 +30,6 @@ export default {
         console.log(
           "player: " + JSON.stringify(this.$store.getters.lobby.player)
         );
-        //v.lobby.player = message.player;
         this.$store.dispatch("updateLobbyPlayer", message.player);
         console.log(
           "player_after_update: " +
@@ -52,7 +51,7 @@ export default {
       }, 10000);
     };
     this.websocket.onclose = () => {
-      //clearInterval(v.interval);
+      clearInterval(this.interval);
       this.sendMessageOverWebsocket("deregister");
     };
   },
@@ -64,9 +63,6 @@ export default {
           // Lobby not full
           this.$store.dispatch("lobbySetRegistered", true);
           this.$store.dispatch("lobbySetClientId", messageId);
-          //this.lobby.registered = true;
-          //this.lobby.clientId = messageId;
-          //this.$emit("update:lobby", this.lobby);
         } else {
           // Already 7 Player
           // TODO

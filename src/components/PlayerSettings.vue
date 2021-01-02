@@ -36,10 +36,10 @@
         @change="onChange($event)"
       >
         <option
-          v-for="color in colors"
-          :key="color.name"
+          v-for="color in colors.slice(1)"
+          :key="color.value"
           v-bind:style="{ color: color.value }"
-          v-bind:value="{ value: color.value, name: color.name }"
+          v-bind:value="{ name: color.name, value: color.value }"
         >
           {{ color.name }}
         </option>
@@ -77,7 +77,7 @@ export default defineComponent({
     return {
       changeName: false,
       playerName: "empty",
-      selected: {value: '#000000', name: 'black'},
+      selected: {name: 'black', value: '#000000'},
       colors: [
         {
           name: "black",
@@ -105,7 +105,7 @@ export default defineComponent({
         },
         {
           name: "light-blue",
-          value: "#b2dbff"
+          value: "#0ddeff"
         }
       ]
     };
@@ -134,9 +134,6 @@ export default defineComponent({
     getClientPlayer: function() {
       return this.$store.getters.lobby.player[this.componentid];
     },
-    updatePlayer: function() {
-      this.$parent.sendPlayerData();
-    }
   },
   computed: {
     playerColor: function() {
@@ -145,8 +142,9 @@ export default defineComponent({
     playerColorName: function() {
       const color = this.$store.getters.lobby.player[this.componentid].color;
       console.log(this.componentid)
+      console.log(color);
       const result = this.colors.find(col => col.value === color)
-      console.log('result: ' + result)
+      console.log('result: ' + JSON.stringify(result))
       if(result === undefined) {
         return 'black'
       } else {
@@ -158,18 +156,6 @@ export default defineComponent({
     },
     playerReady: function () {
       return this.$store.getters.lobby.player[this.componentid].ready;
-    },
-    playerNameComputed: {
-      get() {
-        //this function will determine what is displayed in the input
-        return this.getClientPlayer().name;
-      },
-      set(name) {
-        //this function will run whenever the input changes
-        const p = this.getClientPlayer();
-        p.name = name;
-        this.$emit("update:lobby.player", p);
-      }
     },
   }
 });
