@@ -8,7 +8,12 @@
         <div class="d-flex justify-content-center" style="margin-top: 1em">
           <h3>Player</h3>
         </div>
-        <PlayerSettings v-for="(n, i) in $store.getters.lobby.player.length" :key="i" :componentid="i" :enabled="checkEnabled(i)">
+        <PlayerSettings
+          v-for="(n, i) in $store.getters.lobby.player.length"
+          :key="i"
+          :componentid="i"
+          :enabled="checkEnabled(i)"
+        >
         </PlayerSettings>
       </div>
       <div class="col-lg-3 lobby-panel d-flex flex-column">
@@ -38,7 +43,9 @@
     <div class="row">
       <div class="col d-flex justify-content-center lobby-bottom-panel">
         <div class="d-flex justify-content-center" style="margin: 15px">
-          <button class="standard-button" v-on:click="setPlayerReady">Ready</button>
+          <button class="standard-button" v-on:click="setPlayerReady">
+            Ready
+          </button>
         </div>
       </div>
     </div>
@@ -46,28 +53,27 @@
 </template>
 
 <script lang="js">
-import { defineComponent } from "vue"; // @ is an alias to /src
 import PlayerSettings from "@/components/PlayerSettings.vue";
 
-export default defineComponent({
+export default {
   name: "lobby",
   methods: {
-    setPlayerReady: function () {
+    setPlayerReady: function() {
       this.$store.dispatch("setClientPlayerReady");
       this.sendPlayerData();
     },
-    sendPlayerData: function () {
-      if (this.$root != null) {
-        this.$root.sendPlayerOverWebsocket("lobby-change");
+    sendPlayerData: function(){
+      if (this.$parent != null) {
+        this.$parent.sendPlayerOverWebsocket("lobby-change");
       }
     },
     checkEnabled: function(n) {
       return n === this.$store.getters.lobby.clientId
     }
   },
-  mounted: function () {
+  mounted: function() {
     console.log("lobby: " + JSON.stringify(this.$store.getters.lobby));
-    this.$root.sendMessageOverWebsocket("register");
+    this.$parent.sendMessageOverWebsocket("register");
   },
   computed: {
     isEnabled: function(n) {
@@ -77,7 +83,7 @@ export default defineComponent({
   components: {
     PlayerSettings,
   },
-});
+};
 </script>
 
 <style scoped>

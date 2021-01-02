@@ -11,17 +11,17 @@
 </template>
 
 <script lang="js">
-import { defineComponent } from "vue";
 import $ from 'jquery'
 
-export default defineComponent({
+export default {
   name: "Map",
   props: {
         playersdata: Object
   },
   methods: {
        movePlayer: function(event) {
-          if(this.$root.model.win) {
+          console.log(this.$store.getters.getGameRunning);
+          if(!this.$store.getters.getGameRunning) {
               return
           }
           const clickCoords = this.getXY(event)
@@ -111,7 +111,7 @@ export default defineComponent({
         this.handleMapDrag()
         this.redraw()
     }
-});
+};
 </script>
 
 <style scoped>

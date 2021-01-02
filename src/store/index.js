@@ -1,6 +1,9 @@
-import { createStore } from "vuex";
+import Vue from "vue";
+import Vuex from "vuex";
 
-export const store = createStore({
+Vue.use(Vuex);
+
+export default new Vuex.Store({
   state: {
     gameRunning: false,
     currentTicketType: "t",
@@ -11,8 +14,8 @@ export const store = createStore({
       player: [
         {
           id: 0,
-          name: 'MrX',
-          color: '#000000',
+          name: "MrX",
+          color: "#000000",
           ready: false
         }
       ]

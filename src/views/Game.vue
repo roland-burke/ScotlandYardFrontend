@@ -36,7 +36,10 @@
         <div class="col-lg-2">
           <div class="history-wrapper" id="history-wrapper">
             <div v-if="model !== null">
-              <History v-bind:historyobject="model.history" ref="History"></History>
+              <History
+                v-bind:historyobject="model.history"
+                ref="History"
+              ></History>
             </div>
             <div v-else>
               <h2>Loading..</h2>
@@ -126,9 +129,16 @@
       </div>
       <div class="row fixed-bottom" style="z-index: 1">
         <div class="col d-flex justify-content-center w-25">
-          <div class="game-controls" id="game-controls" style="pointer-events: all">
+          <div
+            class="game-controls"
+            id="game-controls"
+            style="pointer-events: all"
+          >
             <div v-if="model !== null">
-              <Controls v-bind:name="extractCurrentPlayer.name" ref="Controls"></Controls>
+              <Controls
+                v-bind:name="extractCurrentPlayer.name"
+                ref="Controls"
+              ></Controls>
             </div>
             <div v-else>
               <h2>Loading..</h2>
@@ -141,14 +151,13 @@
 </template>
 
 <script lang="js">
-import { defineComponent } from "vue"; // @ is an alias to /src
 import HeadLine from "@/components/game/HeadLine.vue";
 import Stats from "@/components/game/Stats.vue";
 import History from "@/components/game/History.vue";
 import Map from "@/components/game/Map.vue";
 import Controls from "@/components/game/Controls.vue";
 
-export default defineComponent({
+export default {
   name: "Game",
   props: {
         model: Object,
@@ -193,7 +202,7 @@ export default defineComponent({
       HeadLine,
       Controls,
     }
-});
+};
 </script>
 
 <style>
@@ -379,5 +388,4 @@ Tags: Scala, Play, ScotlandYard
   border: 4px solid #c30202;
   border-radius: 10px;
 }
-
 </style>

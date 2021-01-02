@@ -62,9 +62,8 @@
 </template>
 
 <script lang="js">
-import { defineComponent } from "vue"; // @ is an alias to /src
 
-export default defineComponent({
+export default {
   name: "About",
   methods: {
     backToMenu: function() {
@@ -74,15 +73,15 @@ export default defineComponent({
       this.$router.push("/game");
     }
   }
-});
+};
 </script>
 
 <style scoped>
 #about {
-    display: inline-block;
-    text-align: left;
-    max-width: 60%;
-    margin-top: 8vh;
-    margin-bottom: 40px;
+  display: inline-block;
+  text-align: left;
+  max-width: 60%;
+  margin-top: 8vh;
+  margin-bottom: 40px;
 }
 </style>

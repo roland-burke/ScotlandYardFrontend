@@ -1,7 +1,9 @@
 <template>
-  <Header></Header>
-  <router-view :model="model"></router-view>
-  <Footer></Footer>
+  <div id="app">
+    <Header></Header>
+    <router-view :model="model"></router-view>
+    <Footer></Footer>
+  </div>
 </template>
 
 <script lang="js">
@@ -126,23 +128,23 @@ export default {
 /* === General === */
 
 #app {
-   font-family: Michroma;
+  font-family: Michroma;
 }
 
 .main {
-    display: flex;
-    margin: 0;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 body {
   margin: 0px 0px 0px 0px !important;
   height: 100%;
   font-family: Michroma;
-  background-image: url('~@/assets/map_large_small_opacity.png');
+  background-image: url("~@/assets/map_large_small_opacity.png");
 }
 
 #about {
@@ -258,7 +260,7 @@ body {
 
 /* When the radio button is checked, add a blue background */
 .radio-button-label input:checked ~ .radio-button {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -275,11 +277,11 @@ body {
 
 /* Style the indicator (dot/circle) */
 .radio-button-label .radio-button:after {
- 	top: 9px;
-	left: 9px;
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: white;
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
 }
 </style>

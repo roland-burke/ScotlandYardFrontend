@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es5",
     "module": "esnext",
     "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",
+    "experimentalDecorators": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -27,12 +28,12 @@
     ]
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
     "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
-  ],
+    "tests/**/*.js",
+    "tests/**/*.jsx"
+, "src/main.js", "src/router/index.js"  ],
   "exclude": [
     "node_modules"
   ]

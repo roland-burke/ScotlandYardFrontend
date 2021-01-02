@@ -1,9 +1,12 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import MainMenu from "../views/MainMenu.vue";
-import Lobby from "../views/Lobby.vue";
-import Game from "../views/Game.vue";
+import Vue from "vue";
+import VueRouter from "vue-router";
+import MainMenu from "../views/MainMenu";
+import Lobby from "../views/Lobby";
+import Game from "../views/Game";
 
-const routes: Array<RouteRecordRaw> = [
+Vue.use(VueRouter);
+
+const routes = [
   {
     path: "/",
     name: "MainMenu",
@@ -30,8 +33,9 @@ const routes: Array<RouteRecordRaw> = [
   }
 ];
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+const router = new VueRouter({
+  mode: "history",
+  base: process.env.BASE_URL,
   routes
 });
 

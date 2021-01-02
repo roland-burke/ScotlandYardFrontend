@@ -13,9 +13,7 @@
         minlength="3"
         max="30"
       />
-      <label v-if="!changeName" style="width: 15em">{{
-        getPlayerName
-      }}</label>
+      <label v-if="!changeName" style="width: 15em">{{ getPlayerName }}</label>
       <div v-if="componentid != 0" class="d-flex justify-content-end">
         <button
           v-if="enabled"
@@ -44,14 +42,14 @@
           {{ color.name }}
         </option>
       </select>
-      <label v-else>{{playerColorName}}</label>
+      <label v-else>{{ playerColorName }}</label>
       <div
-      v-if="enabled"
+        v-if="enabled"
         class="color-preview"
         v-bind:style="{ 'background-color': selected.value }"
       ></div>
       <div
-      v-else
+        v-else
         class="color-preview"
         v-bind:style="{ 'background-color': playerColor }"
       ></div>
@@ -65,9 +63,8 @@
 </template>
 
 <script lang="js">
-import { defineComponent } from "vue";
 
-export default defineComponent({
+export default {
   name: "PlayerSettings",
   props: {
     componentid: Number,
@@ -126,7 +123,7 @@ export default defineComponent({
         this.$parent.sendPlayerData();
       }
     },
-    onChange: function (event) {
+    onChange: function () {
       console.log('OnChange');
       this.$store.dispatch("setPlayerColor", this.selected.value);
       this.$parent.sendPlayerData();
@@ -158,7 +155,7 @@ export default defineComponent({
       return this.$store.getters.lobby.player[this.componentid].ready;
     },
   }
-});
+};
 </script>
 
 <style scoped>
