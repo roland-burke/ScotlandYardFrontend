@@ -42,7 +42,7 @@
     </div>
     <div class="row">
       <div class="col d-flex justify-content-center lobby-bottom-panel">
-        <div class="d-flex justify-content-center" style="margin: 15px">
+        <div class="d-flex justify-content-center">
           <button class="standard-button" v-on:click="setPlayerReady">
             Ready
           </button>

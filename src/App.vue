@@ -1,22 +1,21 @@
 <template>
-  <div id="app">
-    <span class="bg"></span>
-    <v-app>
-      <Header></Header>
-      <v-alert
-        v-if="websocketError"
-        border="bottom"
-        dense
-        elevation="16"
-        outlined
-        prominent
-        text
-        type="error"
-      >Connecting to Websocket failed</v-alert>
-      <router-view :model="model"></router-view>
-      <Footer></Footer>
-    </v-app>
-  </div>
+  <v-app>
+    <v-alert
+      class="alert"
+      v-if="websocketError"
+      border="bottom"
+      dense
+      elevation="16"
+      outlined
+      prominent
+      text
+      type="error"
+      >Connecting to Websocket failed</v-alert
+    >
+    <Header></Header>
+    <router-view :model="model"></router-view>
+    <Footer></Footer>
+  </v-app>
 </template>
 
 <script lang="js">
@@ -116,36 +115,24 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Michroma");
 /* === General === */
 
+.v-select__selections input { display: none}
+
 #app {
   font-family: Michroma;
-}
-
-.main {
-  display: flex;
-  margin: 0;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.bg {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: url('~@/assets/map_large_small_opacity.png') no-repeat center center;
+  background: url("~@/assets/map_large_small_opacity.png") no-repeat center
+    center;
   background-size: cover;
-  transform: scale(1.1);
 }
 
-#about {
-  display: inline-block;
-  text-align: left;
-  max-width: 60%;
-  margin-top: 8vh;
-  margin-bottom: 40px;
+body {
+  margin: 0px 0px 0px 0px !important;
+  height: 100%;
+  overflow: hidden;
+}
+
+.alert {
+  margin-top: 60px;
+  position: relative;
 }
 
 /* === Buttons === */
@@ -165,6 +152,7 @@ export default {
   text-decoration: none;
   text-shadow: 0px 1px 0px #3d768a;
   margin: 5px;
+  border: solid 2px black;
 }
 .standard-button:hover {
   background: linear-gradient(to bottom, #2e5d80 5%, #2e5d80 100%);
@@ -197,6 +185,7 @@ export default {
   text-decoration: none;
   text-shadow: 0px 1px 0px #3d768a;
   margin: 5px;
+  border: solid 2px black;
 }
 .standard-button-small:hover {
   background: linear-gradient(to bottom, #2e5d80 5%, #2e5d80 100%);

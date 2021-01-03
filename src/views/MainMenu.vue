@@ -1,6 +1,5 @@
 <template>
-  <main role="main" class="d-flex align-items-center justify-content-center">
-    <div class="main">
+  <main class="d-flex align-items-center justify-content-center">
       <div class="index-wrapper">
         <div class="row my-3 d-flex justify-content-center">
           <router-link class="main-menu-button" to="/lobby"
@@ -17,7 +16,6 @@
           <router-link class="main-menu-button" to="/about">About</router-link>
         </div>
       </div>
-    </div>
   </main>
 </template>
 
@@ -39,7 +37,7 @@ input[type="file"] {
   background-color: #cae4ff;
   border: 2px solid #000000;
   border-radius: 10%;
-  padding: 10% 10%;
+  padding: 2em 2em;
   margin-top: 20vh;
 }
 
@@ -71,13 +69,5 @@ input[type="file"] {
 .main-menu-button:active {
   position: relative;
   top: 1px;
-}
-.main {
-  display: flex;
-  margin: 0;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
 }
 </style>

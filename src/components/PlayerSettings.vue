@@ -3,16 +3,16 @@
     class="row player-item d-flex justify-content-between align-items-center"
   >
     <div class="player-item-content">
-      <label style="margin-right: 10px">Name:</label>
-      <input
-        v-if="changeName"
+      <label v-if="!changeName" style="margin-right: 10px">Name:</label>
+      <v-text-field
+      v-if="changeName"
         v-model="playerName"
         @keyup.enter="switchView"
         style="width: 15em"
         type="text"
         minlength="3"
-        max="30"
-      />
+        max="30" label="Name">
+        </v-text-field>
       <label v-if="!changeName" style="width: 15em">{{ getPlayerName }}</label>
       <div v-if="componentid != 0" class="d-flex justify-content-end">
         <button
@@ -25,23 +25,19 @@
       </div>
     </div>
     <div class="player-item-content">
-      <label style="margin-right: 10px">Player Color:</label>
-      <select
-        v-if="componentid != 0 && enabled"
-        id="name-select"
-        name="playerIndex"
+      <v-col v-if="componentid != 0 && enabled" cols="9">
+      <v-select
         v-model="selected"
-        @change="onChange($event)"
-      >
-        <option
-          v-for="color in colors.slice(1)"
-          :key="color.value"
-          v-bind:style="{ color: color.value }"
-          v-bind:value="{ name: color.name, value: color.value }"
-        >
-          {{ color.name }}
-        </option>
-      </select>
+        id="name-select"
+        :items="colors"
+        item-text="name"
+        item-value="value"
+        label="Player Color"
+        return-object
+        outlined
+        @change="onChange($event)">
+      </v-select>
+      </v-col>
       <label v-else>{{ playerColorName }}</label>
       <div
         v-if="enabled"
