@@ -2,7 +2,7 @@
   <div>
     <h3>History</h3>
     <div
-      v-for="(history, index) in historyobject.history"
+      v-for="(history, index) in getReversedHistory()"
       :key="index"
       class="d-flex justify-content-center"
     >
@@ -17,11 +17,15 @@
 </template>
 
 <script lang="js">
-
 export default{
   name: "History",
   props: {
     historyobject: Object
+  },
+  methods:{
+    getReversedHistory: function() {
+      return this.historyobject.history.reverse()
+    }
   }
 };
 </script>
