@@ -1,5 +1,15 @@
 <template>
   <div id="app">
+    <v-alert
+      v-if="websocketError"
+      border="bottom"
+      dense
+      elevation="16"
+      outlined
+      prominent
+      text
+      type="error"
+    ></v-alert>
     <Header></Header>
     <router-view :model="model"></router-view>
     <Footer></Footer>
@@ -18,13 +28,18 @@ export default {
     return {
       interval: null,
       model: null,
+      websocketError: false
     };
   },
   mounted: function () {
       const websocket = new WebSocket("ws://localhost:9000/ws")
       this.$store.dispatch("setWebsocket", websocket)
 
+      websocket.onerror = () => {
+        this.websocketError = true
+      };
       websocket.onmessage = (rawMessage) => {
+          this.websocketError = false
           const message = $.parseJSON(rawMessage.data);
           console.log(message);
           if (message.event === "ModelChanged") {
@@ -50,6 +65,7 @@ export default {
           }
       };
       websocket.onopen = () => {
+          this.websocketError = false
           setInterval(() => {
               this.sendMessageOverWebsocket("ping");
           }, 10000);
@@ -57,6 +73,7 @@ export default {
       websocket.onclose = () => {
           clearInterval(this.interval);
           this.sendMessageOverWebsocket("deregister");
+          this.websocketError = true
       };
   },
   methods: {
@@ -82,7 +99,7 @@ export default {
         }
       }
       return null;
-    },
+    }
   },
   mixins: [WebsocketMixin],
   components: {
