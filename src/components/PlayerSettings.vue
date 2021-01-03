@@ -29,7 +29,7 @@
       <v-select
         v-model="selected"
         id="name-select"
-        :items="colors"
+        :items="colors.slice(1)"
         item-text="name"
         item-value="value"
         label="Player Color"
