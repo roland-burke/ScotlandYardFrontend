@@ -1,20 +1,28 @@
 <template>
-  <footer class="footer fixed-bottom" id="footer">
-    <div class="container-fluid text-center">
-      <span class="text-muted"
-        >More information about
+  <div id="footer">
+    <v-footer padless fixed>
+      <v-col class="text-center" cols="4">
         <a href="https://github.com/tim-koehler/ScotlandYard" target="_blank"
           >ScotlandYard Core</a
         >
-        and
+      </v-col>
+      <v-col class="text-center" cols="4">
         <a
           href="https://github.com/roland-burke/ScotlandYardServer"
           target="_blank"
           >ScotlandYard Server</a
-        ></span
-      >
-    </div>
-  </footer>
+        >
+      </v-col>
+
+      <v-col class="text-center" cols="4">
+        <a
+          href="https://github.com/roland-burke/ScotlandYardFrontend"
+          target="_blank"
+          >ScotlandYard Frontend</a
+        >
+      </v-col>
+    </v-footer>
+  </div>
 </template>
 
 <script lang="js">
@@ -22,16 +30,3 @@ export default ({
   name: "Footer",
 });
 </script>
-
-<style scoped>
-.footer {
-  background-color: #c4c4c4;
-  min-height: 2.5em;
-  max-height: 3em;
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
-}
-</style>

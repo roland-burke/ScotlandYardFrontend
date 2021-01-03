@@ -1,18 +1,21 @@
 <template>
   <div id="app">
-    <v-alert
-      v-if="websocketError"
-      border="bottom"
-      dense
-      elevation="16"
-      outlined
-      prominent
-      text
-      type="error"
-    ></v-alert>
-    <Header></Header>
-    <router-view :model="model"></router-view>
-    <Footer></Footer>
+    <span class="bg"></span>
+    <v-app>
+      <Header></Header>
+      <v-alert
+        v-if="websocketError"
+        border="bottom"
+        dense
+        elevation="16"
+        outlined
+        prominent
+        text
+        type="error"
+      >Connecting to Websocket failed</v-alert>
+      <router-view :model="model"></router-view>
+      <Footer></Footer>
+    </v-app>
   </div>
 </template>
 
@@ -126,11 +129,15 @@ export default {
   text-align: center;
 }
 
-body {
-  margin: 0px 0px 0px 0px !important;
+.bg {
+  width: 100%;
   height: 100%;
-  font-family: Michroma;
-  background-image: url("~@/assets/map_large_small_opacity.png");
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url('~@/assets/map_large_small_opacity.png') no-repeat center center;
+  background-size: cover;
+  transform: scale(1.1);
 }
 
 #about {
