@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="main">
     <v-alert
       class="alert"
       v-if="websocketError"
@@ -122,12 +122,6 @@ export default {
   background: url("~@/assets/map_large_small_opacity.png") no-repeat center
     center;
   background-size: cover;
-}
-
-body {
-  margin: 0px 0px 0px 0px !important;
-  height: 100%;
-  overflow: hidden;
 }
 
 .alert {

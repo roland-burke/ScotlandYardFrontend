@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar color="#93b2e0" dense fixed>
+    <v-app-bar id="header" color="#93b2e0" dense fixed>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn href="/" text>Home</v-btn>
         <v-btn href="/about" text>About</v-btn>

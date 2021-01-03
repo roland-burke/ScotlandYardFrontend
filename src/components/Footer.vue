@@ -1,6 +1,5 @@
 <template>
-  <div id="footer">
-    <v-footer padless fixed dense>
+    <v-footer id="footer" padless fixed dense>
       <v-col class="text-center" cols="4">
         <a href="https://github.com/tim-koehler/ScotlandYard" target="_blank"
           >ScotlandYard Core</a
@@ -22,7 +21,6 @@
         >
       </v-col>
     </v-footer>
-  </div>
 </template>
 
 <script lang="js">
