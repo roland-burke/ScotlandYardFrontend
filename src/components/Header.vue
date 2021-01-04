@@ -1,15 +1,19 @@
 <template>
-    <v-app-bar id="header" color="#93b2e0" dense fixed>
-      <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn href="/" text>Home</v-btn>
-        <v-btn href="/about" text>About</v-btn>
-        <v-btn v-if="$store.getters.getGameRunning" v-on:click="callUndo" text>Undo</v-btn>
-        <v-btn v-if="$store.getters.getGameRunning" v-on:click="callRedo" text>Redo</v-btn>
-      </v-toolbar-items>
-      <v-spacer></v-spacer>
-      <v-toolbar-title class="title">ScotlandYard</v-toolbar-title>
-      <v-spacer></v-spacer>
-    </v-app-bar>
+  <v-app-bar id="header" color="#93b2e0" dense fixed>
+    <v-toolbar-items class="hidden-sm-and-down">
+      <v-btn href="/" text>Home</v-btn>
+      <v-btn href="/about" text>About</v-btn>
+      <v-btn v-if="$store.getters.getGameRunning" v-on:click="callUndo" text
+        >Undo</v-btn
+      >
+      <v-btn v-if="$store.getters.getGameRunning" v-on:click="callRedo" text
+        >Redo</v-btn
+      >
+    </v-toolbar-items>
+    <v-spacer></v-spacer>
+    <v-toolbar-title class="title">ScotlandYard</v-toolbar-title>
+    <v-spacer></v-spacer>
+  </v-app-bar>
 </template>
 
 <script lang="js">

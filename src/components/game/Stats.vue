@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-center">
       <h3>Stats</h3>
     </div>
-    <div v-for="player in playersdata.players" :key="player.name">
+    <div v-for="(player, index) in playersdata.players" :key="index">
       <div class="stats-item">
         <div>
           <b v-if="player.name === 'MrX'"
@@ -56,7 +56,12 @@ export default{
   name: "Stats",
   props: {
     playersdata: Object
-  }
+  },
+  watch: {
+    playersdata: function() {
+      console.log(JSON.stringify(this.playersdata, null, 2)); // spacing level = 2
+    }
+  },
 };
 </script>
 

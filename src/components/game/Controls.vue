@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="game-controls" id="game-controls">
     <div>
       <label>
         <input
@@ -95,19 +95,14 @@ export default{
 </script>
 
 <style scoped>
-.not-active {
-  pointer-events: none;
-  cursor: default;
-  text-decoration: none;
-  color: #4d4d4d;
-  opacity: 0.3;
-}
+
 
 #close-button {
   position: relative;
 }
 
 .game-controls {
+  pointer-events: all;
   background-color: #ffe8b1;
   border: 2px solid #000000;
   border-radius: 6px;
@@ -150,19 +145,4 @@ export default{
   border-radius: 10px;
 }
 
-/* === Map === */
-
-.map-wrapper {
-  background-color: #ffffff;
-  width: 100vw;
-  height: 100vh;
-  cursor: grab;
-  transform: translate3d(0, 0, 0);
-  z-index: 0;
-  overflow: hidden;
-}
-
-#canvas {
-  overflow: hidden;
-}
 </style>
