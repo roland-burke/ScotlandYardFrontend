@@ -12,14 +12,7 @@ export default new Vuex.Store({
       maxPlayers: 7,
       registered: false,
       clientId: 0,
-      player: [
-        {
-          id: 0,
-          name: "MrX",
-          color: "#000000",
-          ready: false
-        }
-      ]
+      player: []
     }
   },
   mutations: {
@@ -27,7 +20,11 @@ export default new Vuex.Store({
       state.gameRunning = value;
     },
     SET_PLAYER_READY(state, value) {
-      state.lobby.player[state.lobby.clientId].ready = value;
+      if(Number(window.$cookies.get('id')) != -1) {
+        state.lobby.player[Number(window.$cookies.get('id'))].ready = value;
+      } else {
+        console.warn('Player id = -1!')
+      }
     },
     UPDATE_LOBBY(state, lobby) {
       state.lobby = lobby;
@@ -47,25 +44,20 @@ export default new Vuex.Store({
     SET_PLAYER_COLOR(state, color) {
       state.lobby.player[state.lobby.clientId].color = color;
     },
-    setGameRunningTrue(state) {
-      state.gameRunning = true;
-    },
-    setGameRunningFalse(state) {
-      state.gameRunning = false;
-    },
     UPDATE_CLIENT_PLAYER_NAME(state, newName) {
-      state.lobby.player[state.lobby.clientId].name = newName;
+      if(Number(window.$cookies.get('id')) != -1) {
+        state.lobby.player[Number(window.$cookies.get('id'))].name = newName;
+      } else {
+        console.warn('Player id = -1!')
+      }
     },
     SET_WEBSOCKET(state, value) {
       state.websocket = value;
     }
   },
   actions: {
-    setGameRunningTrue(context) {
-      context.commit("SET_GAME_RUNNING", true);
-    },
-    setGameRunningFalse(context) {
-      context.commit("SET_GAME_RUNNING", false);
+    setGameRunning(context, value) {
+      context.commit("SET_GAME_RUNNING", value);
     },
     setClientPlayerReady(context) {
       context.commit("SET_PLAYER_READY", true);
@@ -110,9 +102,6 @@ export default new Vuex.Store({
     },
     getCurrentTicketType(state) {
       return state.currentTicketType;
-    },
-    getGameRunning: state => {
-      return state.gameRunning;
     },
     getWebsocket: state => {
       return state.websocket;

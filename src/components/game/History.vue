@@ -17,7 +17,7 @@
 </template>
 
 <script lang="js">
-export default{
+export default {
   name: "History",
   props: {
     historyobject: Object

@@ -22,8 +22,8 @@ export default {
   },
   methods: {
        movePlayer: function(event) {
-          console.log(this.$store.getters.getGameRunning);
-          if(!this.$store.getters.getGameRunning) {
+          console.log(this.$store.getters.gameRunning);
+          if(!this.$store.getters.gameRunning) {
               return
           }
           const clickCoords = this.getXY(event)

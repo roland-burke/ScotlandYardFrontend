@@ -70,12 +70,15 @@ export default {
       }
     },
     checkEnabled: function(n) {
-      return n === this.$store.getters.lobby.clientId
+      console.log('n' + n + ' === cookies.get(id)' + window.$cookies.get('id') + ': ' + n === Number(window.$cookies.get('id')));
+      return n === Number(window.$cookies.get('id'))
     }
   },
   mounted: function() {
     console.log("lobby: " + JSON.stringify(this.$store.getters.lobby));
-    this.sendMessageOverWebsocket("register");
+    if(!window.$cookies.isKey('registered') || window.$cookies.get('registered') === 'false') {
+      this.sendMessageOverWebsocket("register");
+    }
   },
   computed: {
     isEnabled: function(n) {

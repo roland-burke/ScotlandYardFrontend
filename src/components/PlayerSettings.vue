@@ -5,15 +5,14 @@
     <div class="player-item-content">
       <label v-if="!changeName" style="margin-right: 10px">Name:</label>
       <v-text-field
-      v-if="changeName"
+        v-if="changeName"
         v-model="playerName"
         @keyup.enter="switchView"
-        style="width: 15em"
         type="text"
         minlength="3"
         max="30" label="Name">
         </v-text-field>
-      <label v-if="!changeName" style="width: 15em">{{ getPlayerName }}</label>
+      <label v-if="!changeName" style="min-width: 9em">{{ getPlayerName }}</label>
       <div v-if="componentid != 0" class="d-flex justify-content-end">
         <button
           v-if="enabled"
@@ -25,7 +24,7 @@
       </div>
     </div>
     <div class="player-item-content">
-      <v-col v-if="componentid != 0 && enabled" cols="9">
+      <v-col v-if="componentid != 0 && enabled" cols="11">
       <v-select
         v-model="selected"
         id="name-select"
@@ -38,7 +37,7 @@
         @change="onChange($event)">
       </v-select>
       </v-col>
-      <label v-else>{{ playerColorName }}</label>
+      <label v-else>{{ playerColorName.name }}</label>
       <div
         v-if="enabled"
         class="color-preview"
@@ -105,10 +104,11 @@ export default {
   },
   mounted: function () {
     this.clientPlayer = this.$store.getters.clientPlayer;
-    console.log(this.componentid)
-    console.log(this.$store.getters.lobby.player[0])
-    this.selected = this.colors[this.componentid];
-    this.playerName = this.$store.getters.lobby.player[this.componentid].name;
+    // initialize Selected from store
+    this.selected = this.getColorObject(this.$store.getters.lobby.player[this.componentid].color);
+    // initialize Player Name from store
+    this.playerName = this.getPlayerName;
+    console.log('mounted componentId: ' + this.componentid);
   },
   methods: {
     switchView: function () {
@@ -127,6 +127,18 @@ export default {
     getClientPlayer: function() {
       return this.$store.getters.lobby.player[this.componentid];
     },
+    getColorObject: function(color) {
+      const result = this.colors.find(col => col.value === color)
+      if(result === undefined) {
+        var obj = {
+          name: "black",
+          value: "#000000"
+        };
+        return obj;
+      } else {
+        return result;
+      }
+    }
   },
   computed: {
     playerColor: function() {
@@ -134,15 +146,8 @@ export default {
     },
     playerColorName: function() {
       const color = this.$store.getters.lobby.player[this.componentid].color;
-      console.log(this.componentid)
-      console.log(color);
-      const result = this.colors.find(col => col.value === color)
-      console.log('result: ' + JSON.stringify(result))
-      if(result === undefined) {
-        return 'black'
-      } else {
-        return result.name;
-      }
+      console.log('componentId in playerColorName: ' + this.componentid)
+      return this.getColorObject(color)
     },
     getPlayerName: function () {
       return this.$store.getters.lobby.player[this.componentid].name;
@@ -159,6 +164,8 @@ export default {
   border-radius: 50px;
   border: 2px solid black;
   width: 2em;
+  min-width: 2em;
+  min-height: 2em;
   height: 2em;
   margin-left: 1em;
 }
@@ -189,7 +196,8 @@ export default {
 }
 
 .player-item-content {
-  min-width: 16em;
+  min-width: 8em;
+  max-height: 6em;
   margin: 0 0.5em 0 0.5em;
   display: flex;
   align-items: center;

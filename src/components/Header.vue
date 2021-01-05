@@ -3,12 +3,12 @@
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn href="/" text>Home</v-btn>
         <v-btn href="/about" text>About</v-btn>
-        <v-btn v-if="$store.getters.getGameRunning" v-on:click="callUndo" text>Undo</v-btn>
-        <v-btn v-if="$store.getters.getGameRunning" v-on:click="callRedo" text>Redo</v-btn>
+        <v-btn v-if="$store.getters.gameRunning" v-on:click="callUndo" text>Undo</v-btn>
+        <v-btn v-if="$store.getters.gameRunning" v-on:click="callRedo" text>Redo</v-btn>
       </v-toolbar-items>
-      <v-spacer></v-spacer>
-      <v-toolbar-title class="title">ScotlandYard</v-toolbar-title>
-      <v-spacer></v-spacer>
+      <v-row justify="center">
+        <v-toolbar-title class="title">ScotlandYard</v-toolbar-title>
+      </v-row>
     </v-app-bar>
 </template>
 
@@ -45,7 +45,6 @@ export default{
     0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2),
     0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2),
     0 20px 20px rgba(0, 0, 0, 0.15);
-  color: #ffffff;
   font-size: 2em;
 }
 </style>

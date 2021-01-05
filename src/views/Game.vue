@@ -64,8 +64,8 @@
                   X
                 </button>
               </div>
-              <div class="row d-flex justify-content-center">
-                <div class="col">
+              <v-row>
+                <v-col>
                   <div
                     class="row d-flex justify-content-center"
                     id="winning-row"
@@ -87,8 +87,8 @@
                       {{ extractCurrentPlayer.station }}
                     </div>
                   </div>
-                </div>
-              </div>
+                </v-col>
+              </v-row>
               <div class="row d-flex justify-content-center" id="win-image">
                 <img
                   v-if="model.winningPlayer === 'MrX'"
@@ -242,6 +242,8 @@ Tags: Scala, Play, ScotlandYard
 
 .close-button {
   background-color: red;
+  width: 2em;
+  border: 2px solid black;
 }
 
 #close-button {
