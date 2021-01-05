@@ -8,7 +8,6 @@
 
     <Map v-if="model !== null" v-bind:playersdata="model.player" ref="Map">
     </Map>
-
     <div
       class="container-fluid"
       style="overflow: hidden; position: absolute; top: 0; pointer-events: none"
@@ -16,7 +15,7 @@
       <div class="row">
         <div class="col d-flex justify-content-center">
           <div style="padding-top: 40px">
-            <div class="justify-content-center">
+            <div v-if="$store.getters.getShowUi" class="justify-content-center">
               <div v-if="model !== null">
                 <HeadLine
                   v-bind:round="model.round"
@@ -26,7 +25,10 @@
                 ></HeadLine>
               </div>
               <div v-else>
-                <h2>Loading..</h2>
+                <v-progress-circular
+                  :width="3"
+                  indeterminate
+                ></v-progress-circular>
               </div>
             </div>
           </div>
@@ -34,7 +36,11 @@
       </div>
       <div class="row">
         <div class="col-lg-2">
-          <div class="history-wrapper" id="history-wrapper">
+          <div
+            v-if="$store.getters.getShowUi"
+            class="history-wrapper"
+            id="history-wrapper"
+          >
             <div v-if="model !== null">
               <History
                 v-bind:historyobject="model.history"
@@ -42,7 +48,10 @@
               ></History>
             </div>
             <div v-else>
-              <h2>Loading..</h2>
+              <v-progress-circular
+                :width="3"
+                indeterminate
+              ></v-progress-circular>
             </div>
           </div>
         </div>
@@ -54,18 +63,28 @@
           <Win v-bind:model="model" />
         </div>
         <div class="col-lg-2 d-flex justify-content-end">
-          <div class="stats-wrapper" id="stats-wrapper">
+          <div
+            v-if="$store.getters.getShowUi"
+            class="stats-wrapper"
+            id="stats-wrapper"
+          >
             <div v-if="model !== null">
               <Stats v-bind:playersdata="model.player" ref="Stats"></Stats>
             </div>
             <div v-else>
-              <h2>Loading..</h2>
+              <v-progress-circular
+                :width="3"
+                indeterminate
+              ></v-progress-circular>
             </div>
           </div>
         </div>
       </div>
       <div class="row fixed-bottom" style="z-index: 1">
-        <div class="col d-flex justify-content-center w-25">
+        <div
+          v-if="$store.getters.getShowUi"
+          class="col d-flex justify-content-center w-25"
+        >
           <div>
             <div v-if="model !== null">
               <Controls
@@ -74,7 +93,10 @@
               ></Controls>
             </div>
             <div v-else>
-              <h2>Loading..</h2>
+              <v-progress-circular
+                :width="3"
+                indeterminate
+              ></v-progress-circular>
             </div>
           </div>
         </div>
@@ -103,7 +125,7 @@ export default {
     },
     watch: {
       model: function() {
-        //console.log(JSON.stringify(this.model, null, 2)); // spacing level = 2
+        console.log(JSON.stringify(this.model, null, 2)); // spacing level = 2
       }
     },
     computed: {
@@ -136,8 +158,6 @@ Tags: Scala, Play, ScotlandYard
 */
 
 /* ==== Game ==== */
-
-
 
 .stats-wrapper {
   background-color: #96b9ec;

@@ -57,11 +57,6 @@ export default{
   props: {
     playersdata: Object
   },
-  watch: {
-    playersdata: function() {
-      console.log(JSON.stringify(this.playersdata, null, 2)); // spacing level = 2
-    }
-  },
 };
 </script>
 

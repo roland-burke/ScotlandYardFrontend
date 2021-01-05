@@ -95,8 +95,6 @@ export default{
 </script>
 
 <style scoped>
-
-
 #close-button {
   position: relative;
 }

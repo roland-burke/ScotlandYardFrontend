@@ -1,57 +1,55 @@
 <template>
-  <div v-if="model !== null && model.win && showWinningDialog">
-    <div
-      id="winning-dialog"
-      class="winning-dialog col d-flex flex-column justify-content-between"
-    >
-      <div id="close-button" class="d-flex justify-content-end">
-        <button v-on:click="showWinningDialog = false" class="close-button">
-          X
-        </button>
-      </div>
-      <div class="row d-flex justify-content-center">
-        <div class="col">
-          <div class="row d-flex justify-content-center" id="winning-row">
-            <h1 v-if="model.winningPlayer === 'MrX'" id="winning-title">
-              MrX Won!!!
-            </h1>
-            <h1 v-else id="winning-title">Detectives Won!!!</h1>
+  <div
+    id="winning-dialog"
+    class="winning-dialog col d-flex flex-column justify-content-between"
+  >
+    <div id="close-button" class="d-flex justify-content-end">
+      <button v-on:click="showWinningDialog = false" class="close-button">
+        X
+      </button>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col">
+        <div class="row d-flex justify-content-center" id="winning-row">
+          <h1 v-if="model.winningPlayer === 'MrX'" id="winning-title">
+            MrX Won!!!
+          </h1>
+          <h1 v-else id="winning-title">Detectives Won!!!</h1>
+        </div>
+        <div id="winning-subtitle" class="row d-flex justify-content-center">
+          <div v-if="model.winningPlayer === 'MrX'">
+            MrX escaped successfully
           </div>
-          <div id="winning-subtitle" class="row d-flex justify-content-center">
-            <div v-if="model.winningPlayer === 'MrX'">
-              MrX escaped successfully
-            </div>
-            <div v-else>
-              MrX was caught at Station:
-              {{ extractCurrentPlayer.station }}
-            </div>
+          <div v-else>
+            MrX was caught at Station:
+            {{ extractCurrentPlayer.station }}
           </div>
         </div>
       </div>
-      <div class="row d-flex justify-content-center" id="win-image">
-        <img
-          v-if="model.winningPlayer === 'MrX'"
-          :width="250"
-          :height="250"
-          :src="require('../../assets/mrx-win.png')"
-          :alt="MrX"
-        />
-        <img
-          v-else
-          :width="250"
-          :height="250"
-          :src="require('../../assets/detective-win.png')"
-          :alt="Detective"
-        />
-      </div>
-      <div
-        id="win-button"
-        class="row d-flex justify-content-center align-items-center align-self-center"
-      >
-        <a href="/">
-          <button class="standard-button">Main Menu</button>
-        </a>
-      </div>
+    </div>
+    <div class="row d-flex justify-content-center" id="win-image">
+      <img
+        v-if="model.winningPlayer === 'MrX'"
+        :width="250"
+        :height="250"
+        :src="require('../../assets/mrx-win.png')"
+        :alt="MrX"
+      />
+      <img
+        v-else
+        :width="250"
+        :height="250"
+        :src="require('../../assets/detective-win.png')"
+        :alt="Detective"
+      />
+    </div>
+    <div
+      id="win-button"
+      class="row d-flex justify-content-center align-items-center align-self-center"
+    >
+      <a href="/">
+        <button class="standard-button">Main Menu</button>
+      </a>
     </div>
   </div>
 </template>
