@@ -1,15 +1,27 @@
 <template>
-    <v-app-bar id="header" color="#93b2e0" dense fixed>
-      <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn href="/" text>Home</v-btn>
-        <v-btn href="/about" text>About</v-btn>
-        <v-btn v-if="$store.getters.gameRunning" v-on:click="callUndo" text>Undo</v-btn>
-        <v-btn v-if="$store.getters.gameRunning" v-on:click="callRedo" text>Redo</v-btn>
-      </v-toolbar-items>
-      <v-row justify="center">
-        <v-toolbar-title class="title">ScotlandYard</v-toolbar-title>
-      </v-row>
-    </v-app-bar>
+  <v-app-bar id="header" color="#93b2e0" dense fixed>
+    <v-toolbar-items class="hidden-sm-and-down">
+      <v-btn href="/" text>
+        <v-icon>mdi-home</v-icon>
+      </v-btn>
+      <v-btn href="/about" text>
+        <v-icon>mdi-help</v-icon>
+      </v-btn>
+      <v-btn v-on:click="callUndo" v-if="$store.getters.getGameRunning" text>
+        <v-icon>mdi-undo</v-icon>
+      </v-btn>
+      <v-btn v-on:click="callRedo" v-if="$store.getters.getGameRunning" text>
+        <v-icon>mdi-redo</v-icon>
+      </v-btn>
+    </v-toolbar-items>
+    <v-spacer v-if="$store.getters.getGameRunning"></v-spacer>
+    <v-btn v-on:click="callHideUi" v-if="$store.getters.getGameRunning" text>
+      <v-icon>mdi-television-guide</v-icon>
+    </v-btn>
+    <!--<v-spacer></v-spacer>
+    <v-toolbar-title class="title">ScotlandYard</v-toolbar-title>
+    <v-spacer></v-spacer>-->
+  </v-app-bar>
 </template>
 
 <script lang="js">
@@ -24,6 +36,9 @@ export default{
     },
     callRedo: function () {
       this.sendMessageOverWebsocket("redo")
+    },
+    callHideUi: function() {
+      this.$store.dispatch("setShowUi", !this.$store.getters.getShowUi)
     },
     menuItems: function() {
       return this.menu

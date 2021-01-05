@@ -1,10 +1,12 @@
 <template>
-  <v-container fluid>
-    <v-row justify="center">
-      <div id="about">
-        <div class="d-flex justify-content-center">
+
+  <v-container fill-height fluid>
+    <v-row align="center" justify="center">
+      <v-col md="7">
+        <div>
           <h1>About</h1>
         </div>
+        <v-divider></v-divider>
         <h3 style="font-weight: bold">Description</h3>
         <p>
           Scotland Yard is a board game in which a team of players, as police,
@@ -57,7 +59,7 @@
         >
           Back to Game
         </button>
-      </div>
+      </v-col>
     </v-row>
   </v-container>
 </template>

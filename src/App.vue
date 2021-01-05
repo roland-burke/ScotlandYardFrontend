@@ -100,16 +100,6 @@ export default {
       }
     }
   },
-  computed: {
-    extractCurrentPlayer: function() {
-      for (const player of this.model.player.players) {
-        if (player.current === true) {
-          return player;
-        }
-      }
-      return null;
-    }
-  },
   mixins: [WebsocketMixin],
   components: {
     Header,

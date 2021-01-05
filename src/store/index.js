@@ -8,6 +8,7 @@ export default new Vuex.Store({
     gameRunning: false,
     currentTicketType: "t",
     websocket: Object,
+    showUi: true,
     lobby: {
       maxPlayers: 7,
       registered: false,
@@ -53,6 +54,9 @@ export default new Vuex.Store({
     },
     SET_WEBSOCKET(state, value) {
       state.websocket = value;
+    },
+    SET_SHOW_UI(state, value) {
+      state.showUi = value;
     }
   },
   actions: {
@@ -88,6 +92,9 @@ export default new Vuex.Store({
     },
     setWebsocket(context, value) {
       context.commit("SET_WEBSOCKET", value);
+    },
+    setShowUi(context, value) {
+      context.commit("SET_SHOW_UI", value);
     }
   },
   getters: {
@@ -105,6 +112,9 @@ export default new Vuex.Store({
     },
     getWebsocket: state => {
       return state.websocket;
+    },
+    getShowUi: state => {
+      return state.showUi;
     }
   }
 });
