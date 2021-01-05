@@ -84,7 +84,7 @@ export default {
   display: inline-block;
   text-align: left;
   max-width: 70%;
-  margin-top: 8vh;
-  margin-bottom: 40px;
+  margin-top: 10em;
+  margin-bottom: 10em;
 }
 </style>

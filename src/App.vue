@@ -33,6 +33,9 @@ export default {
       websocketError: false
     };
   },
+  beforeDestroyed: function () {
+    this.removeCookies()
+  },
   mounted: function () {
     console.log("MOUNTED")
       const websocket = new WebSocket("ws://localhost:9000/ws")
@@ -77,6 +80,7 @@ export default {
           clearInterval(this.interval);
           this.sendMessageOverWebsocket("deregister");
           this.websocketError = true
+          this.removeCookies()
       };
   },
   methods: {
@@ -98,6 +102,10 @@ export default {
           // TODO
         }
       }
+    },
+    removeCookies: function () {
+      window.$cookies.remove('id')
+      window.$cookies.remove('registered')
     }
   },
   mixins: [WebsocketMixin],
