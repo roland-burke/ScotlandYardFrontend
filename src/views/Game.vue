@@ -1,5 +1,9 @@
 <template>
   <div id="game-wrapper-total" style="position: relative; overflow-x: hidden">
+    <div
+      v-if="$store.getters.getWinningDialog"
+      class="winning-background"
+    ></div>
     <Map v-if="model !== null" v-bind:playersdata="model.player" ref="Map">
     </Map>
     <div
@@ -227,6 +231,16 @@ export default {
   opacity: 0;
   width: 0;
   height: 0;
+}
+
+.winning-background {
+  background-color: #000000;
+  z-index: 2;
+  opacity: 0.5;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  pointer-events: none;
 }
 
 /* IMAGE STYLES */

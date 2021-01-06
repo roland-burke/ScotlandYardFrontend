@@ -9,6 +9,7 @@ export default new Vuex.Store({
     currentTicketType: "t",
     websocket: Object,
     showUi: true,
+    showWinningDialog: false,
     lobby: {
       maxPlayers: 7,
       registered: false,
@@ -64,6 +65,9 @@ export default new Vuex.Store({
     },
     SET_SHOW_UI(state, value) {
       state.showUi = value;
+    },
+    SET_SHOW_WINNING_DIALOG(state, value) {
+      state.showWinningDialog = value;
     }
   },
   actions: {
@@ -102,6 +106,9 @@ export default new Vuex.Store({
     },
     setShowUi(context, value) {
       context.commit("SET_SHOW_UI", value);
+    },
+    setWinningDialog(context, value) {
+      context.commit("SET_SHOW_WINNING_DIALOG", value);
     }
   },
   getters: {
@@ -122,6 +129,9 @@ export default new Vuex.Store({
     },
     getShowUi: state => {
       return state.showUi;
+    },
+    getWinningDialog: state => {
+      return state.showWinningDialog;
     }
   }
 });
