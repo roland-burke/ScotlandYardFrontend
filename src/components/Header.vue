@@ -1,6 +1,6 @@
 <template>
   <v-app-bar id="header" color="#93b2e0" dense fixed>
-    <v-toolbar-items class="hidden-sm-and-down">
+    <v-toolbar-items>
       <v-btn to="/" text>
         <v-icon>mdi-home</v-icon>
       </v-btn>
