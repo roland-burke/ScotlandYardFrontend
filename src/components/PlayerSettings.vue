@@ -145,8 +145,8 @@ export default {
       return this.$store.getters.lobby.player[this.componentid].color;
     },
     playerColorName: function() {
-      const color = this.$store.getters.lobby.player[this.componentid].color;
       console.log('componentId in playerColorName: ' + this.componentid)
+      const color = this.$store.getters.lobby.player[this.componentid].color;
       return this.getColorObject(color)
     },
     getPlayerName: function () {

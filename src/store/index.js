@@ -21,10 +21,11 @@ export default new Vuex.Store({
       state.gameRunning = value;
     },
     SET_PLAYER_READY(state, value) {
-      if(Number(window.$cookies.get('id')) != -1) {
-        state.lobby.player[Number(window.$cookies.get('id'))].ready = value;
+      let id = Number(window.$cookies.get('id'))
+      if(id != -1) {
+        state.lobby.player[id].ready = value;
       } else {
-        console.warn('Player id = -1!')
+        console.warn('Player id = -1! in setReady')
       }
     },
     UPDATE_LOBBY(state, lobby) {
@@ -43,13 +44,19 @@ export default new Vuex.Store({
       state.currentTicketType = value;
     },
     SET_PLAYER_COLOR(state, color) {
-      state.lobby.player[state.lobby.clientId].color = color;
+      let id = Number(window.$cookies.get('id'))
+      if(id != -1) {
+        state.lobby.player[id].color = color;
+      } else {
+        console.warn('Player id = -1! in setColor')
+      }
     },
     UPDATE_CLIENT_PLAYER_NAME(state, newName) {
-      if(Number(window.$cookies.get('id')) != -1) {
-        state.lobby.player[Number(window.$cookies.get('id'))].name = newName;
+      let id = Number(window.$cookies.get('id'))
+      if(id != -1) {
+        state.lobby.player[id].name = newName;
       } else {
-        console.warn('Player id = -1!')
+        console.warn('Player id = -1! in updateName')
       }
     },
     SET_WEBSOCKET(state, value) {
