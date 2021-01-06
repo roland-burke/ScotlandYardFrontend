@@ -1,21 +1,21 @@
 <template>
   <v-app-bar id="header" color="#93b2e0" dense fixed>
     <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn href="/" text>
+      <v-btn to="/" text>
         <v-icon>mdi-home</v-icon>
       </v-btn>
-      <v-btn href="/about" text>
+      <v-btn to="/about" text>
         <v-icon>mdi-help</v-icon>
       </v-btn>
-      <v-btn v-on:click="callUndo" v-if="$store.getters.getGameRunning" text>
+      <v-btn v-on:click="callUndo" v-if="$store.getters.gameRunning" text>
         <v-icon>mdi-undo</v-icon>
       </v-btn>
-      <v-btn v-on:click="callRedo" v-if="$store.getters.getGameRunning" text>
+      <v-btn v-on:click="callRedo" v-if="$store.getters.gameRunning" text>
         <v-icon>mdi-redo</v-icon>
       </v-btn>
     </v-toolbar-items>
-    <v-spacer v-if="$store.getters.getGameRunning"></v-spacer>
-    <v-btn v-on:click="callHideUi" v-if="$store.getters.getGameRunning" text>
+    <v-spacer v-if="$store.getters.gameRunning"></v-spacer>
+    <v-btn v-on:click="callHideUi" v-if="$store.getters.gameRunning" text>
       <v-icon>mdi-television-guide</v-icon>
     </v-btn>
     <!--<v-spacer></v-spacer>
