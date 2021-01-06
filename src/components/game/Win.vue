@@ -2,11 +2,12 @@
   <div
     id="winning-dialog"
     class="winning-dialog col d-flex flex-column justify-content-between"
+    v-if="showWinningDialog"
   >
     <div id="close-button" class="d-flex justify-content-end">
-      <button v-on:click="showWinningDialog = false" class="close-button">
-        X
-      </button>
+      <v-btn elevation="9" fab color="red" v-on:click="manageWinningDialog">
+        <v-icon>mdi-close-circle</v-icon>
+      </v-btn>
     </div>
     <div class="row d-flex justify-content-center">
       <div class="col">
@@ -59,21 +60,33 @@ export default {
     name: "Win",
     data: function() {
         return {
-            showWinningDialog: true
+            showWinningDialog: false
         }
     },
     props: {
         model: Object
     },
+    watch: {
+      model: function() {
+        if(this.model.win) {
+          this.showWinningDialog = true
+        }
+      }
+    },
     computed: {
         extractCurrentPlayer: function() {
             for (const player of this.model.player.players) {
                 if (player.current === true) {
-                return player;
+                  return player;
                 }
             }
             return null;
         }
+    },
+    methods: {
+      manageWinningDialog: function() {
+        this.showWinningDialog = false
+      }
     }
 };
 </script>

@@ -1,11 +1,5 @@
 <template>
   <div id="game-wrapper-total" style="position: relative; overflow-x: hidden">
-    <div
-      v-if="model !== null && model.win && showWinningDialog"
-      id="winning-background"
-      class="winning-background"
-    ></div>
-
     <Map v-if="model !== null" v-bind:playersdata="model.player" ref="Map">
     </Map>
     <div
