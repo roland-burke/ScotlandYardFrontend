@@ -68,9 +68,7 @@ export default {
       this.sendPlayerData();
     },
     sendPlayerData: function(){
-      if (this.$parent != null) {
-        this.sendObjectOverWebsocket( {player: this.$store.getters.lobby.player }, "lobby-change");
-      }
+      this.sendObjectOverWebsocket( {player: this.$store.getters.lobby.player }, "lobby-change");
     },
     checkEnabled: function(n) {
       return this.$store.getters.lobby.player[n].id === Number(window.$cookies.get('id'))
@@ -80,6 +78,7 @@ export default {
     }
   },
   mounted: function() {
+    console.log('LOBBY MOUNTED')
     console.log("lobby: " + JSON.stringify(this.$store.getters.lobby));
     console.log('gameRunning: ' + this.$store.getters.gameRunning);
     if(this.$store.getters.gameRunning) {

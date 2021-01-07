@@ -12,14 +12,14 @@
     <div class="row d-flex justify-content-center">
       <div class="col">
         <div class="row d-flex justify-content-center" id="winning-row">
-          <h1 v-if="model.winningPlayer === 'MrX'" id="winning-title">
+          <h1 v-if="winningPlayer === 'MrX'" id="winning-title">
             MrX Won!!!
           </h1>
           <h1 v-else id="winning-title">Detectives Won!!!</h1>
         </div>
         <v-divider></v-divider>
         <div id="winning-subtitle" class="row d-flex justify-content-center">
-          <div v-if="model.winningPlayer === 'MrX'">
+          <div v-if="winningPlayer === 'MrX'">
             MrX escaped successfully
           </div>
           <div v-else>
@@ -31,7 +31,7 @@
     </div>
     <div class="row d-flex justify-content-center" id="win-image" style="padding-top: 2.5em;">
       <img
-        v-if="model.winningPlayer === 'MrX'"
+        v-if="winningPlayer === 'MrX'"
         :width="250"
         :height="250"
         :src="require('../../assets/mrx-win.png')"
@@ -63,6 +63,11 @@ export default {
     props: {
         model: Object
     },
+    data: function() {
+    return {
+      winningPlayer: 'MrX',
+    };
+  },
     watch: {
       model: function() {
         if(this.model.win) {
@@ -70,6 +75,9 @@ export default {
           this.$store.dispatch('setWinningDialog', true)
         }
       }
+    },
+    mounted: function() {
+      this.winningPlayer = this.model.winningPlayer
     },
     computed: {
         extractCurrentPlayer: function() {

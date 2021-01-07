@@ -58,7 +58,7 @@
           class="col-lg-8 d-flex justify-content-center"
           style="z-index: 5"
         >
-          <Win v-bind:model="model" />
+          <Win :model="model" />
         </div>
         <div class="col-lg-2 d-flex justify-content-end">
           <div
