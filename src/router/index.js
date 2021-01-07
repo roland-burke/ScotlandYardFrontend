@@ -3,7 +3,6 @@ import VueRouter from "vue-router";
 import MainMenu from "../views/MainMenu";
 import Lobby from "../views/Lobby";
 import Game from "../views/Game";
-import Test from "../views/Test";
 
 Vue.use(VueRouter);
 
@@ -26,11 +25,6 @@ const routes = [
     path: "/lobby",
     name: "Lobby",
     component: Lobby
-  },
-  {
-    path: "/test",
-    name: "Test",
-    component: Test
   },
   {
     path: "/game",

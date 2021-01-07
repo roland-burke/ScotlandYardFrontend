@@ -2,10 +2,10 @@
   <div
     id="winning-dialog"
     class="winning-dialog col d-flex flex-column justify-content-between"
-    v-if="showWinningDialog"
+    v-if="$store.getters.getWinningDialog"
   >
     <div id="close-button" class="d-flex justify-content-end">
-      <v-btn elevation="9" fab color="red" v-on:click="manageWinningDialog">
+      <v-btn elevation="9" fab color="red" small v-on:click="manageWinningDialog">
         <v-icon>mdi-close-circle</v-icon>
       </v-btn>
     </div>
@@ -17,6 +17,7 @@
           </h1>
           <h1 v-else id="winning-title">Detectives Won!!!</h1>
         </div>
+        <v-divider></v-divider>
         <div id="winning-subtitle" class="row d-flex justify-content-center">
           <div v-if="model.winningPlayer === 'MrX'">
             MrX escaped successfully
@@ -28,7 +29,7 @@
         </div>
       </div>
     </div>
-    <div class="row d-flex justify-content-center" id="win-image">
+    <div class="row d-flex justify-content-center" id="win-image" style="padding-top: 2.5em;">
       <img
         v-if="model.winningPlayer === 'MrX'"
         :width="250"
@@ -47,6 +48,7 @@
     <div
       id="win-button"
       class="row d-flex justify-content-center align-items-center align-self-center"
+      style="padding-top: 2em;"
     >
       <a href="/">
         <button class="standard-button">Main Menu</button>
@@ -58,18 +60,14 @@
 <script lang="js">
 export default {
     name: "Win",
-    data: function() {
-        return {
-            showWinningDialog: false
-        }
-    },
     props: {
         model: Object
     },
     watch: {
       model: function() {
         if(this.model.win) {
-          this.showWinningDialog = true
+          console.log("WIIIIIIN");
+          this.$store.dispatch('setWinningDialog', true)
         }
       }
     },
@@ -85,7 +83,7 @@ export default {
     },
     methods: {
       manageWinningDialog: function() {
-        this.showWinningDialog = false
+         this.$store.dispatch('setWinningDialog', false)
       }
     }
 };
