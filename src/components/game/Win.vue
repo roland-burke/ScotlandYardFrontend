@@ -5,23 +5,25 @@
     v-if="$store.getters.getWinningDialog"
   >
     <div id="close-button" class="d-flex justify-content-end">
-      <v-btn elevation="9" fab color="red" small v-on:click="manageWinningDialog">
+      <v-btn
+        elevation="9"
+        fab
+        color="red"
+        small
+        v-on:click="manageWinningDialog"
+      >
         <v-icon>mdi-close-circle</v-icon>
       </v-btn>
     </div>
     <div class="row d-flex justify-content-center">
       <div class="col">
         <div class="row d-flex justify-content-center" id="winning-row">
-          <h1 v-if="winningPlayer === 'MrX'" id="winning-title">
-            MrX Won!!!
-          </h1>
+          <h1 v-if="winningPlayer === 'MrX'" id="winning-title">MrX Won!!!</h1>
           <h1 v-else id="winning-title">Detectives Won!!!</h1>
         </div>
         <v-divider></v-divider>
         <div id="winning-subtitle" class="row d-flex justify-content-center">
-          <div v-if="winningPlayer === 'MrX'">
-            MrX escaped successfully
-          </div>
+          <div v-if="winningPlayer === 'MrX'">MrX escaped successfully</div>
           <div v-else>
             MrX was caught at Station:
             {{ extractCurrentPlayer.station }}
@@ -29,7 +31,11 @@
         </div>
       </div>
     </div>
-    <div class="row d-flex justify-content-center" id="win-image" style="padding-top: 2.5em;">
+    <div
+      class="row d-flex justify-content-center"
+      id="win-image"
+      style="padding-top: 2.5em"
+    >
       <img
         v-if="winningPlayer === 'MrX'"
         :width="250"
@@ -48,7 +54,7 @@
     <div
       id="win-button"
       class="row d-flex justify-content-center align-items-center align-self-center"
-      style="padding-top: 2em;"
+      style="padding-top: 2em"
     >
       <a href="/">
         <button class="standard-button">Main Menu</button>

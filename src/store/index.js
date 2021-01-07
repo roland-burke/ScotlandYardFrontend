@@ -21,12 +21,12 @@ export default new Vuex.Store({
       state.gameRunning = value;
     },
     SET_PLAYER_READY(state, value) {
-      let id = Number(window.$cookies.get('id'))
-      if(id != -1) {
-        let player = state.lobby.player.find(p => p.id === id)
+      let id = Number(window.$cookies.get("id"));
+      if (id != -1) {
+        let player = state.lobby.player.find(p => p.id === id);
         player.ready = value;
       } else {
-        console.warn('Player id = -1! in setReady')
+        console.warn("Player id = -1! in setReady");
       }
     },
     UPDATE_LOBBY(state, lobby) {
@@ -42,21 +42,21 @@ export default new Vuex.Store({
       state.currentTicketType = value;
     },
     SET_PLAYER_COLOR(state, color) {
-      let id = Number(window.$cookies.get('id'))
-      if(id != -1) {
-        let player = state.lobby.player.find(p => p.id === id)
+      let id = Number(window.$cookies.get("id"));
+      if (id != -1) {
+        let player = state.lobby.player.find(p => p.id === id);
         player.color = color;
       } else {
-        console.warn('Player id = -1! in setColor')
+        console.warn("Player id = -1! in setColor");
       }
     },
     UPDATE_CLIENT_PLAYER_NAME(state, newName) {
-      let id = Number(window.$cookies.get('id'))
-      if(id != -1) {
-        let player = state.lobby.player.find(p => p.id === id)
+      let id = Number(window.$cookies.get("id"));
+      if (id != -1) {
+        let player = state.lobby.player.find(p => p.id === id);
         player.name = newName;
       } else {
-        console.warn('Player id = -1! in updateName')
+        console.warn("Player id = -1! in updateName");
       }
     },
     SET_WEBSOCKET(state, value) {
@@ -115,13 +115,13 @@ export default new Vuex.Store({
       return state.lobby;
     },
     clientPlayer(state) {
-      let id = Number(window.$cookies.get('id'))
-      if(id != -1) {
-        let player = state.lobby.player.find(p => p.id === id)
-        return player
+      let id = Number(window.$cookies.get("id"));
+      if (id != -1) {
+        let player = state.lobby.player.find(p => p.id === id);
+        return player;
       } else {
-        console.warn('Player id = -1! in clientPlayer')
-        return null
+        console.warn("Player id = -1! in clientPlayer");
+        return null;
       }
     },
     getCurrentTicketType(state) {
