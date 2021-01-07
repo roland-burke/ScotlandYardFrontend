@@ -142,5 +142,4 @@ export default{
   border: 4px solid #c30202;
   border-radius: 10px;
 }
-
 </style>
