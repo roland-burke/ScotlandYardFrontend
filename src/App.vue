@@ -85,31 +85,10 @@ export default {
   },
   methods: {
     handleRegister: function (messageId) {
-      if(window.$cookies.isKey('id')) {
-        return; // do not register again
-      }
-
+      //if(window.$cookies.isKey('id')) {
+      //  return; // do not register again
+      //}
       window.$cookies.set('id', messageId, '3h');
-
-      /*
-      if(window.$cookies.isKey('id') && window.$cookies.isKey('registered')) { // if the cookies exist...
-        if(Number(window.$cookies.get('id')) != -1 || window.$cookies.get('registered') === 'true') { // ...and indicate that the client is already registered
-          return; // do not register again
-        }
-      }
-      if (!this.$store.getters.lobby.registered) {
-        if (this.$store.getters.lobby.clientId !== -1) {
-          // Lobby not full
-          window.$cookies.set('id', messageId, '3h');
-          window.$cookies.set('registered', true, '3h');
-          this.$store.dispatch("lobbySetRegistered", true);
-          this.$store.dispatch("lobbySetClientId", messageId);
-        } else {
-          // Already 7 Player
-          // TODO
-        }
-      }
-      */
     },
     removeCookies: function () {
       window.$cookies.remove('id')

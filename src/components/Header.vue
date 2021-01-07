@@ -1,10 +1,10 @@
 <template>
   <v-app-bar id="header" color="#93b2e0" dense fixed>
     <v-toolbar-items>
-      <v-btn to="/" text>
+      <v-btn v-on:click="callHome" to="/" text>
         <v-icon>mdi-home</v-icon>
       </v-btn>
-      <v-btn to="/about" text>
+      <v-btn v-on:click="callAbout" to="/about" text>
         <v-icon>mdi-help</v-icon>
       </v-btn>
       <v-btn v-on:click="callUndo" v-if="$store.getters.gameRunning" text>
@@ -31,6 +31,12 @@ export default{
   name: "Header",
   mixins: [WebsocketMixin],
   methods: {
+    callHome: function() {
+      this.sendObjectOverWebsocket({id: Number(window.$cookies.get('id'))}, "deregister");
+    },
+    callAbout: function() {
+      this.sendObjectOverWebsocket({id: Number(window.$cookies.get('id'))}, "deregister");
+    },
     callUndo: function () {
       this.sendMessageOverWebsocket("undo")
     },
