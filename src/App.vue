@@ -13,7 +13,9 @@
       >Connecting to Websocket failed</v-alert
     >
     <Header></Header>
-    <router-view :model="model"></router-view>
+    <div v-if="isMounted">
+      <router-view :model="model"></router-view>
+    </div>
     <Footer></Footer>
   </v-app>
 </template>
@@ -30,7 +32,8 @@ export default {
     return {
       interval: null,
       model: null,
-      websocketError: false
+      websocketError: false,
+      isMounted: false
     };
   },
   beforeDestroyed: function () {
@@ -67,12 +70,12 @@ export default {
               this.$router.push("/game");
           } else if (message.event === "GameFinished") {
               window.$cookies.set('id', -1, '3h');
-              window.$cookies.set('registered', false, '3h');
               this.$store.dispatch("setGameRunning", false);
           }
       };
       websocket.onopen = () => {
           this.websocketError = false
+          this.isMounted = true;
           setInterval(() => {
               this.sendMessageOverWebsocket("ping");
           }, 10000);

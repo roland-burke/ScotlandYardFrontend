@@ -12,7 +12,6 @@ export default new Vuex.Store({
     showWinningDialog: false,
     lobby: {
       maxPlayers: 7,
-      registered: false,
       clientId: 0,
       player: []
     }
@@ -35,9 +34,6 @@ export default new Vuex.Store({
     },
     UPDATE_LOBBY_PLAYER(state, player) {
       state.lobby.player = player;
-    },
-    UPDATE_LOBBY_REGISTERED(state, value) {
-      state.lobby.registered = value;
     },
     UPDATE_LOBBY_CLIENTID(state, value) {
       state.lobby.clientId = value;
@@ -91,9 +87,6 @@ export default new Vuex.Store({
     },
     updateClientPlayerName(context, newName) {
       context.commit("UPDATE_CLIENT_PLAYER_NAME", newName);
-    },
-    lobbySetRegistered(context, value) {
-      context.commit("UPDATE_LOBBY_REGISTERED", value);
     },
     lobbySetClientId(context, value) {
       context.commit("UPDATE_LOBBY_CLIENTID", value);

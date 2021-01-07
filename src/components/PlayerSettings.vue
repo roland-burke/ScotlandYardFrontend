@@ -57,9 +57,11 @@
 </template>
 
 <script lang="js">
+import { WebsocketMixin } from "@/mixins/websocketMixin.js"
 
 export default {
   name: "PlayerSettings",
+  mixins: [WebsocketMixin],
   props: {
     componentid: Number,
     enabled: Boolean,
@@ -113,13 +115,13 @@ export default {
       if (this.changeName === false) {
         // second button press
         this.$store.dispatch("updateClientPlayerName", this.playerName)
-        this.$parent.sendPlayerData();
+        this.sendObjectOverWebsocket( {player: this.$store.getters.lobby.player }, "lobby-change");
       }
     },
     onChange: function () {
       console.log('OnChange');
       this.$store.dispatch("setPlayerColor", this.selected.value);
-      this.$parent.sendPlayerData();
+      this.sendObjectOverWebsocket( {player: this.$store.getters.lobby.player }, "lobby-change");
     },
     getClientPlayer: function() {
       return this.$store.getters.lobby.player[this.componentid];
