@@ -23,7 +23,8 @@ export default new Vuex.Store({
     SET_PLAYER_READY(state, value) {
       let id = Number(window.$cookies.get('id'))
       if(id != -1) {
-        state.lobby.player[id].ready = value;
+        let player = state.lobby.player.find(p => p.id === id)
+        player.ready = value;
       } else {
         console.warn('Player id = -1! in setReady')
       }
@@ -46,7 +47,8 @@ export default new Vuex.Store({
     SET_PLAYER_COLOR(state, color) {
       let id = Number(window.$cookies.get('id'))
       if(id != -1) {
-        state.lobby.player[id].color = color;
+        let player = state.lobby.player.find(p => p.id === id)
+        player.color = color;
       } else {
         console.warn('Player id = -1! in setColor')
       }
@@ -54,7 +56,8 @@ export default new Vuex.Store({
     UPDATE_CLIENT_PLAYER_NAME(state, newName) {
       let id = Number(window.$cookies.get('id'))
       if(id != -1) {
-        state.lobby.player[id].name = newName;
+        let player = state.lobby.player.find(p => p.id === id)
+        player.name = newName;
       } else {
         console.warn('Player id = -1! in updateName')
       }
@@ -112,7 +115,14 @@ export default new Vuex.Store({
       return state.lobby;
     },
     clientPlayer(state) {
-      return state.lobby.player[state.lobby.clientId].ready;
+      let id = Number(window.$cookies.get('id'))
+      if(id != -1) {
+        let player = state.lobby.player.find(p => p.id === id)
+        return player
+      } else {
+        console.warn('Player id = -1! in clientPlayer')
+        return null
+      }
     },
     getCurrentTicketType(state) {
       return state.currentTicketType;

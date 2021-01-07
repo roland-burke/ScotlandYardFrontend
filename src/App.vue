@@ -34,7 +34,7 @@ export default {
     };
   },
   beforeDestroyed: function () {
-    this.removeCookies()
+    this.sendObjectOverWebsocket({id: Number(window.$cookies.get('id'))}, "deregister");
   },
   mounted: function () {
     console.log("MOUNTED")
@@ -50,6 +50,7 @@ export default {
           console.log(message);
           if (message.event === "ModelChanged") {
               this.model = message;
+              this.$store.dispatch("setGameRunning", this.model.gameRunning);
           } else if (message.event === "register") {
               this.handleRegister(message.id);
           } else if (message.event === "lobby-change") {
@@ -78,13 +79,19 @@ export default {
       };
       websocket.onclose = () => {
           clearInterval(this.interval);
-          this.sendMessageOverWebsocket("deregister");
           this.websocketError = true
-          this.removeCookies()
+          this.sendObjectOverWebsocket({id: Number(window.$cookies.get('id'))}, "deregister");
       };
   },
   methods: {
     handleRegister: function (messageId) {
+      if(window.$cookies.isKey('id')) {
+        return; // do not register again
+      }
+
+      window.$cookies.set('id', messageId, '3h');
+
+      /*
       if(window.$cookies.isKey('id') && window.$cookies.isKey('registered')) { // if the cookies exist...
         if(Number(window.$cookies.get('id')) != -1 || window.$cookies.get('registered') === 'true') { // ...and indicate that the client is already registered
           return; // do not register again
@@ -102,10 +109,10 @@ export default {
           // TODO
         }
       }
+      */
     },
     removeCookies: function () {
       window.$cookies.remove('id')
-      window.$cookies.remove('registered')
     }
   },
   mixins: [WebsocketMixin],

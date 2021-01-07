@@ -37,16 +37,10 @@
         @change="onChange($event)">
       </v-select>
       </v-col>
-      <label v-else>{{ playerColorName.name }}</label>
+      <label v-else>{{ playerColor.name }}</label>
       <div
-        v-if="enabled"
         class="color-preview"
-        v-bind:style="{ 'background-color': selected.value }"
-      ></div>
-      <div
-        v-else
-        class="color-preview"
-        v-bind:style="{ 'background-color': playerColor }"
+        v-bind:style="{ 'background-color': playerColor.value }"
       ></div>
     </div>
     <div class="player-item-content justify-content-end">
@@ -69,7 +63,7 @@ export default {
     return {
       changeName: false,
       playerName: "empty",
-      selected: {name: 'black', value: '#000000'},
+      selected: this.playerColor,
       colors: [
         {
           name: "black",
@@ -103,12 +97,10 @@ export default {
     };
   },
   mounted: function () {
-    this.clientPlayer = this.$store.getters.clientPlayer;
-    // initialize Selected from store
-    this.selected = this.getColorObject(this.$store.getters.lobby.player[this.componentid].color);
+    this.enabled = this.$store.getters.lobby.player[this.componentid].id === Number(window.$cookies.get('id'))
     // initialize Player Name from store
     this.playerName = this.getPlayerName;
-    console.log('mounted componentId: ' + this.componentid);
+
   },
   methods: {
     switchView: function () {
@@ -141,19 +133,20 @@ export default {
     }
   },
   computed: {
-    playerColor: function() {
-      return this.$store.getters.lobby.player[this.componentid].color;
-    },
-    playerColorName: function() {
-      console.log('componentId in playerColorName: ' + this.componentid)
-      const color = this.$store.getters.lobby.player[this.componentid].color;
-      return this.getColorObject(color)
-    },
     getPlayerName: function () {
       return this.$store.getters.lobby.player[this.componentid].name;
     },
     playerReady: function () {
       return this.$store.getters.lobby.player[this.componentid].ready;
+    },
+    playerColor: function() {
+      if(this.$store.getters.lobby.player[this.componentid].id === Number(window.$cookies.get('id'))) {
+        const color = this.$store.getters.clientPlayer.color;
+        return this.getColorObject(color)
+      } else {
+        const color = this.$store.getters.lobby.player[this.componentid].color;
+        return this.getColorObject(color)
+      }
     },
   }
 };

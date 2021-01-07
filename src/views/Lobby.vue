@@ -1,5 +1,8 @@
 <template>
-  <div id="lobby" class="container-fluid lobby-wrapper">
+  <div v-if="$store.getters.gameRunning" id="lobby" class="container-fluid lobby-wrapper">
+    Game has already started!
+  </div>
+  <div v-else id="lobby" class="container-fluid lobby-wrapper">
     <div class="row d-flex justify-content-center">
       <h1>Lobby</h1>
     </div>
@@ -70,20 +73,26 @@ export default {
       }
     },
     checkEnabled: function(n) {
-      console.log('n' + n + ' === cookies.get(id)' + window.$cookies.get('id') + ': ' + n === Number(window.$cookies.get('id')));
-      return n === Number(window.$cookies.get('id'))
+      return this.$store.getters.lobby.player[n].id === Number(window.$cookies.get('id'))
+    },
+    handler: function() {
+      this.sendObjectOverWebsocket({id: Number(window.$cookies.get('id'))}, "deregister");
     }
   },
   mounted: function() {
     console.log("lobby: " + JSON.stringify(this.$store.getters.lobby));
-    if(!window.$cookies.isKey('registered') || window.$cookies.get('registered') === 'false') {
-      this.sendMessageOverWebsocket("register");
+    console.log('gameRunning: ' + this.$store.getters.gameRunning);
+    if(this.$store.getters.gameRunning) {
+      return;
+    }
+    if(window.$cookies.isKey('id')) {
+      this.sendObjectOverWebsocket({id: Number(window.$cookies.get('id'))}, "register");
+    } else {
+      this.sendObjectOverWebsocket({id: -1}, "register");
     }
   },
-  computed: {
-    isEnabled: function(n) {
-      return n === this.$store.getters.lobby.clientId
-    }
+  created: function() {
+    window.addEventListener('beforeunload', this.handler)
   },
   components: {
     PlayerSettings,
