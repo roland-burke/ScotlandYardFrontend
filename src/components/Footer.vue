@@ -1,5 +1,5 @@
 <template>
-  <v-footer id="footer" padless fixed dense>
+  <v-footer id="footer" padless dense fixed>
     <v-col class="text-center" cols="4">
       <a href="https://github.com/tim-koehler/ScotlandYard" target="_blank"
         >ScotlandYard Core</a

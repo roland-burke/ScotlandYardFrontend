@@ -1,6 +1,5 @@
 <template>
-
-  <v-container fill-height fluid>
+  <v-container id="about">
     <v-row align="center" justify="center">
       <v-col md="7">
         <div>
@@ -83,8 +82,8 @@ export default {
 #about {
   display: inline-block;
   text-align: left;
-  max-width: 70%;
-  margin-top: 10em;
-  margin-bottom: 10em;
+  max-width: 90vw;
+  margin-top: 3em;
+  margin-bottom: 3em;
 }
 </style>
