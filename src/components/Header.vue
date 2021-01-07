@@ -18,9 +18,6 @@
     <v-btn v-on:click="callHideUi" v-if="$store.getters.gameRunning" text>
       <v-icon>mdi-television-guide</v-icon>
     </v-btn>
-    <!--<v-spacer></v-spacer>
-    <v-toolbar-title class="title">ScotlandYard</v-toolbar-title>
-    <v-spacer></v-spacer>-->
   </v-app-bar>
 </template>
 

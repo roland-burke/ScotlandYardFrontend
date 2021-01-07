@@ -10,9 +10,13 @@
         @keyup.enter="switchView"
         type="text"
         minlength="3"
-        max="30" label="Name">
-        </v-text-field>
-      <label v-if="!changeName" style="min-width: 9em">{{ getPlayerName }}</label>
+        max="30"
+        label="Name"
+      >
+      </v-text-field>
+      <label v-if="!changeName" style="min-width: 9em">{{
+        getPlayerName
+      }}</label>
       <div v-if="componentid != 0" class="d-flex justify-content-end">
         <button
           v-if="enabled"
@@ -25,17 +29,18 @@
     </div>
     <div class="player-item-content">
       <v-col v-if="componentid != 0 && enabled" cols="11">
-      <v-select
-        v-model="selected"
-        id="name-select"
-        :items="colors.slice(1)"
-        item-text="name"
-        item-value="value"
-        label="Player Color"
-        return-object
-        outlined
-        @change="onChange($event)">
-      </v-select>
+        <v-select
+          v-model="selected"
+          id="name-select"
+          :items="colors.slice(1)"
+          item-text="name"
+          item-value="value"
+          label="Player Color"
+          return-object
+          outlined
+          @change="onChange($event)"
+        >
+        </v-select>
       </v-col>
       <label v-else>{{ playerColor.name }}</label>
       <div

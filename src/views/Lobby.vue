@@ -1,5 +1,9 @@
 <template>
-  <div v-if="$store.getters.gameRunning" id="lobby" class="container-fluid lobby-wrapper">
+  <div
+    v-if="$store.getters.gameRunning"
+    id="lobby"
+    class="container-fluid lobby-wrapper"
+  >
     Game has already started!
   </div>
   <div v-else id="lobby" class="container-fluid lobby-wrapper">

@@ -85,9 +85,6 @@ export default {
   },
   methods: {
     handleRegister: function (messageId) {
-      //if(window.$cookies.isKey('id')) {
-      //  return; // do not register again
-      //}
       window.$cookies.set('id', messageId, '3h');
     },
     removeCookies: function () {
@@ -106,7 +103,9 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Michroma");
 /* === General === */
 
-.v-select__selections input { display: none}
+.v-select__selections input {
+  display: none;
+}
 
 #app {
   font-family: Michroma;
