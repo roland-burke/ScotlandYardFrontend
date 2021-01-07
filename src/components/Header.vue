@@ -1,76 +1,68 @@
 <template>
-  <nav class="navbar navbar-expand-md navbar-light fixed-top" id="header">
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarCollapse"
-      aria-controls="navbarCollapse"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div
-      class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2"
-      id="navbarCollapse"
-    >
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/"
-            >Main Menu <span class="sr-only">(current)</span></a
-          >
-        </li>
-        <li class="nav-item active float-left">
-          <router-link class="nav-link" to="/about">About</router-link>
-        </li>
-        <li v-if="$store.getters.getGameRunning" class="nav-item active">
-          <router-link class="nav-link" to="/game">Save Game</router-link>
-        </li>
-        <li v-if="$store.getters.getGameRunning" class="nav-item active">
-          <a
-            id="undo"
-            class="nav-link"
-            v-on:click="callUndo"
-            href="javascript:void(0)"
-            >Undo</a
-          >
-        </li>
-        <li v-if="$store.getters.getGameRunning" class="nav-item active">
-          <a
-            id="redo"
-            class="nav-link"
-            v-on:click="callRedo"
-            href="javascript:void(0)"
-            >Redo</a
-          >
-        </li>
-      </ul>
-      <div
-        class="d-flex justify-content-center"
-        style="width: 100%; position: fixed; pointer-events: none"
-      >
-        <label class="title">ScotlandYard</label>
-      </div>
-    </div>
-  </nav>
+  <v-app-bar id="header" color="#93b2e0" dense fixed>
+    <v-toolbar-items>
+      <v-btn v-on:click="callHome" to="/" text>
+        <v-icon>mdi-home</v-icon>
+      </v-btn>
+      <v-btn v-on:click="callAbout" to="/about" text>
+        <v-icon>mdi-help</v-icon>
+      </v-btn>
+      <v-btn v-on:click="callUndo" v-if="$store.getters.gameRunning" text>
+        <v-icon>mdi-undo</v-icon>
+      </v-btn>
+      <v-btn v-on:click="callRedo" v-if="$store.getters.gameRunning" text>
+        <v-icon>mdi-redo</v-icon>
+      </v-btn>
+    </v-toolbar-items>
+    <v-spacer v-if="$store.getters.gameRunning"></v-spacer>
+    <v-btn v-on:click="callHideUi" v-if="$store.getters.gameRunning" text>
+      <v-icon>mdi-television-guide</v-icon>
+    </v-btn>
+  </v-app-bar>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="js">
+import { WebsocketMixin } from "@/mixins/websocketMixin.js"
 
-export default defineComponent({
+export default{
   name: "Header",
+  mixins: [WebsocketMixin],
   methods: {
-    callUndo: function() {
-      //this.$root.sendMessageOverWebsocket("undo")
+    callHome: function() {
+      this.sendObjectOverWebsocket({id: Number(window.$cookies.get('id'))}, "deregister");
     },
-    callRedo: function() {
-      //this.$root.sendMessageOverWebsocket("redo")
+    callAbout: function() {
+      this.sendObjectOverWebsocket({id: Number(window.$cookies.get('id'))}, "deregister");
+    },
+    callUndo: function () {
+      this.sendMessageOverWebsocket("undo")
+    },
+    callRedo: function () {
+      this.sendMessageOverWebsocket("redo")
+    },
+    callHideUi: function() {
+      this.$store.dispatch("setShowUi", !this.$store.getters.getShowUi)
+    },
+    menuItems: function() {
+      return this.menu
     }
-  }
-});
+  },
+};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+#header {
+  background-color: #93b2e0;
+  box-shadow: 0 0 25px 0 black;
+  position: absolute;
+}
+.title {
+  color: #ffffff;
+  text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9,
+    0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2),
+    0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2),
+    0 20px 20px rgba(0, 0, 0, 0.15);
+  font-size: 2em;
+}
+</style>
