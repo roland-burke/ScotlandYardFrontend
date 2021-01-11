@@ -5,7 +5,9 @@
         <h3>Scotland Yard</h3>
       </div>
       <div class="row my-3 d-flex justify-content-center">
-        <router-link class="main-menu-button" to="/lobby">Start Game</router-link>
+        <router-link class="main-menu-button" to="/lobby"
+          >Start Game</router-link
+        >
       </div>
       <div class="row my-3 d-flex justify-content-center">
         <label class="main-menu-button">
