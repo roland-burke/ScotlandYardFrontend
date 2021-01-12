@@ -12,8 +12,6 @@ import VueCookies from "vue-cookies";
 
 Vue.config.productionTip = false;
 
-const swLocation = '../public/sw-config.js';
-
 new Vue({
   router,
   store,
