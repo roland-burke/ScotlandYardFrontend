@@ -78,8 +78,13 @@
 
 export default{
   name: "Controls",
+  data: function() {
+    return {
+      oldName: String
+    }
+  },
   props: {
-    name: String
+      name: String
   },
   methods: {
     commitSelectedTicketType: function() {
@@ -90,6 +95,14 @@ export default{
             }
         }
     }
+  },
+  watch: {
+      name: function() {
+          if (this.name !== this.oldname) {
+              document.getElementsByName('transport')[0].checked = true;
+              this.oldName = this.name
+          }
+      }
   }
 };
 </script>
