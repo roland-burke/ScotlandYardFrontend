@@ -18,12 +18,16 @@
     <div class="row d-flex justify-content-center">
       <div class="col">
         <div class="row d-flex justify-content-center" id="winning-row">
-          <h1 v-if="winningPlayer === 'MrX'" id="winning-title">MrX Won!!!</h1>
+          <h1 v-if="model.winningPlayer === 'MrX'" id="winning-title">
+            MrX Won!!!
+          </h1>
           <h1 v-else id="winning-title">Detectives Won!!!</h1>
         </div>
         <v-divider></v-divider>
         <div id="winning-subtitle" class="row d-flex justify-content-center">
-          <div v-if="winningPlayer === 'MrX'">MrX escaped successfully</div>
+          <div v-if="model.winningPlayer === 'MrX'">
+            MrX escaped successfully
+          </div>
           <div v-else>
             MrX was caught at Station:
             {{ extractCurrentPlayer.station }}
@@ -37,7 +41,7 @@
       style="padding-top: 2.5em"
     >
       <img
-        v-if="winningPlayer === 'MrX'"
+        v-if="model.winningPlayer === 'MrX'"
         :width="250"
         :height="250"
         :src="require('../../assets/mrx-win.png')"
@@ -65,41 +69,38 @@
 
 <script lang="js">
 export default {
-    name: "Win",
-    props: {
-        model: Object
-    },
-    data: function() {
-    return {
-      winningPlayer: 'MrX',
-    };
+  name: "Win",
+  props: {
+      model: Object
   },
-    watch: {
-      model: function() {
-        if(this.model.win) {
-          console.log("WIIIIIIN");
-          this.$store.dispatch('setWinningDialog', true)
-        }
-      }
-    },
-    mounted: function() {
-      this.winningPlayer = this.model.winningPlayer
-    },
-    computed: {
-        extractCurrentPlayer: function() {
-            for (const player of this.model.player.players) {
-                if (player.current === true) {
-                  return player;
-                }
-            }
-            return null;
-        }
-    },
-    methods: {
-      manageWinningDialog: function() {
-         this.$store.dispatch('setWinningDialog', false)
+  data: function() {
+    return {
+      setWinOnce: false
+    }
+  },
+  watch: {
+    model: function() {
+      if(this.model.win && !this.setWinOnce) {
+        this.$store.dispatch('setWinningDialog', true)
+        this.setWinOnce = true
       }
     }
+  },
+  computed: {
+      extractCurrentPlayer: function() {
+          for (const player of this.model.player.players) {
+              if (player.current === true) {
+                return player;
+              }
+          }
+          return null;
+      }
+  },
+  methods: {
+    manageWinningDialog: function() {
+      this.$store.dispatch('setWinningDialog', false)
+    }
+  }
 };
 </script>
 
