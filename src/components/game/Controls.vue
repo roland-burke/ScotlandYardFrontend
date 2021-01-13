@@ -78,8 +78,13 @@
 
 export default{
   name: "Controls",
+  data: function() {
+    return {
+      oldName: String
+    }
+  },
   props: {
-    name: String
+      name: String
   },
   methods: {
     commitSelectedTicketType: function() {
@@ -90,6 +95,18 @@ export default{
             }
         }
     }
+  },
+  watch: {
+      name: function() {
+          if (this.name !== this.oldname) {
+              document.getElementsByName('transport')[3].checked = false;
+              document.getElementsByName('transport')[2].checked = false;
+              document.getElementsByName('transport')[1].checked = false;
+              document.getElementsByName('transport')[0].checked = true;
+              this.$store.dispatch("setCurrentTicketType", document.getElementsByName('transport')[0].value);
+              this.oldName = this.name
+          }
+      }
   }
 };
 </script>

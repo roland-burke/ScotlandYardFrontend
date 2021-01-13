@@ -40,7 +40,7 @@ export default {
     this.sendObjectOverWebsocket({id: Number(window.$cookies.get('id'))}, "deregister");
   },
   mounted: function () {
-    console.log("MOUNTED")
+      console.log("MOUNTED")
       const websocket = new WebSocket("ws://localhost:9000/ws")
       this.$store.dispatch("setWebsocket", websocket)
 
@@ -112,7 +112,7 @@ export default {
 
 #app {
   font-family: Michroma;
-  background: url("~@/assets/map_large_small_opacity.png") no-repeat center
+  background: url("~@/assets/map_large_small_opacity.webp") no-repeat center
     center;
   background-size: cover;
 }
