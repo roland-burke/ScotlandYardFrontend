@@ -40,8 +40,8 @@ export default {
     this.sendObjectOverWebsocket({id: Number(window.$cookies.get('id'))}, "deregister");
   },
   mounted: function () {
-    console.log("MOUNTED")
-      const websocket = new WebSocket("ws://localhost:9000/ws")
+      console.log("MOUNTED")
+      const websocket = new WebSocket("ws://coding-olymp.de:9000/ws")
       this.$store.dispatch("setWebsocket", websocket)
 
       websocket.onerror = () => {
