@@ -133,7 +133,11 @@ export default {
   watch: {
       name: function() {
           if (this.name !== this.oldname) {
+              document.getElementsByName('transport')[3].checked = false;
+              document.getElementsByName('transport')[2].checked = false;
+              document.getElementsByName('transport')[1].checked = false;
               document.getElementsByName('transport')[0].checked = true;
+              this.$store.dispatch("setCurrentTicketType", document.getElementsByName('transport')[0].value);
               this.oldName = this.name
           }
       }

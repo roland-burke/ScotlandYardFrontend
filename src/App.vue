@@ -112,7 +112,7 @@ export default {
 
 #app {
   font-family: Michroma;
-  background: url("~@/assets/map_large_small_opacity.png") no-repeat center
+  background: url("~@/assets/map_large_small_opacity.webp") no-repeat center
     center;
   background-size: cover;
 }

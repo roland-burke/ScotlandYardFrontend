@@ -96,16 +96,34 @@ export default {
             const ctx = cnvs.getContext('2d');
             const img = new Image();
             img.id = 'map'
-            img.src = require('../../assets/map_large.png')
+            img.src = require('../../assets/map_large.webp')
             img.onload = () => {
                 ctx.drawImage(img,0,0);
+
+                const mrX  = this.playersdata.players[0]
+                if (mrX.isVisible /*|| TODO: Player is MrX (cookie)*/) {
+                    ctx.beginPath();
+                    ctx.arc(mrX.x, mrX.y, 26, 0, 2 * Math.PI, false);
+                    ctx.lineWidth = 10;
+                    ctx.strokeStyle = mrX.color;
+                    ctx.stroke();
+                } else if(mrX.lastSeen !== 'never') {
+                    ctx.beginPath();
+                    ctx.arc(mrX.lastSeenX, mrX.lastSeenY, 26, 0, 2 * Math.PI, false);
+                    ctx.lineWidth = 10;
+                    ctx.strokeStyle = '#969696';
+                    ctx.stroke();
+                }
+
                 for (let i = 0; i < this.playersdata.players.length; i++) {
                     const player = this.playersdata.players[i];
-                    ctx.beginPath();
-                    ctx.arc(player.x, player.y, 26, 0, 2 * Math.PI, false);
-                    ctx.lineWidth = 10;
-                    ctx.strokeStyle = player.color;
-                    ctx.stroke();
+                    if (player.name !== 'MrX') {
+                        ctx.beginPath();
+                        ctx.arc(player.x, player.y, 26, 0, 2 * Math.PI, false);
+                        ctx.lineWidth = 10;
+                        ctx.strokeStyle = player.color;
+                        ctx.stroke();
+                    }
                 }
             };
         }
@@ -118,7 +136,17 @@ export default {
     mounted: function() {
         this.handleMapDrag()
         this.redraw()
-    }
+    },
+    computed: {
+      extractCurrentPlayer: function() {
+          for (const player of this.model.player.players) {
+              if (player.current === true) {
+                return player;
+              }
+          }
+          return null;
+      }
+  },
 };
 </script>
 
