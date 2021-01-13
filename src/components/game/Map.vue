@@ -90,7 +90,7 @@ export default {
             const ctx = cnvs.getContext('2d');
             const img = new Image();
             img.id = 'map'
-            img.src = require('../../assets/map_large.png')
+            img.src = require('../../assets/map_large.webp')
             img.onload = () => {
                 ctx.drawImage(img,0,0);
                 for (let i = 0; i < this.playersdata.players.length; i++) {
