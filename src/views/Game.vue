@@ -86,6 +86,7 @@
           <div>
             <div v-if="model !== null">
               <Controls
+                :model="model"
                 v-bind:name="extractCurrentPlayer.name"
                 ref="Controls"
               ></Controls>

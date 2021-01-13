@@ -26,6 +26,12 @@ export default {
           if(!this.$store.getters.gameRunning) {
               return
           }
+
+        let id = Number(window.$cookies.get("id")
+        if(id === -1 || textractCurrentPlayer().id !== id) {
+            return
+        }
+
           const clickCoords = this.getXY(event)
           const ticketType = this.$store.getters.getCurrentTicketType
 
