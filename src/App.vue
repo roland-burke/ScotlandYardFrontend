@@ -41,7 +41,7 @@ export default {
   },
   mounted: function () {
       console.log("MOUNTED")
-      const websocket = new WebSocket("ws://coding-olymp.de:9000/ws")
+      const websocket = new WebSocket("wss://coding-olymp.de/ws")
       this.$store.dispatch("setWebsocket", websocket)
 
       websocket.onerror = () => {
