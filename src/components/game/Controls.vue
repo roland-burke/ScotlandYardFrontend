@@ -1,10 +1,10 @@
 <template>
   <div class="game-controls" id="game-controls">
     <div class="d-flex justify-content-center currentPlayerName">
-              <label>&gt;</label>
-              <span :style="'color: ' + getClientColor()">{{ getClientName() }}</span>
-              <label>&lt;</label>
-            </div>
+      <label>&gt;</label>
+      <span :style="'color: ' + getClientColor()">{{ getClientName() }}</span>
+      <label>&lt;</label>
+    </div>
     <div>
       <label>
         <input

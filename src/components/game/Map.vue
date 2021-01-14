@@ -1,6 +1,6 @@
 <template>
   <div id="map-wrapper" ref="map-wrapper" class="map-wrapper">
-      <v-alert
+    <v-alert
       style="z-index: 40; margin-top: 3em"
       v-model="alert"
       dismissible
