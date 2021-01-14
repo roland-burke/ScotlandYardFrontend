@@ -1,5 +1,10 @@
 <template>
   <div class="game-controls" id="game-controls">
+    <div class="d-flex justify-content-center currentPlayerName">
+      <label>&gt;</label>
+      <span :style="'color: ' + getClientColor()">{{ getClientName() }}</span>
+      <label>&lt;</label>
+    </div>
     <div>
       <label>
         <input
@@ -76,7 +81,7 @@
 
 <script lang="js">
 
-export default{
+export default {
   name: "Controls",
   data: function() {
     return {
@@ -84,7 +89,8 @@ export default{
     }
   },
   props: {
-      name: String
+      name: String,
+      model: Object
   },
   methods: {
     commitSelectedTicketType: function() {
@@ -94,7 +100,35 @@ export default{
               this.$store.dispatch("setCurrentTicketType", radios[i].value);
             }
         }
-    }
+    },
+    getClientColor: function () {
+      let id = Number(window.$cookies.get("id"));
+      if (id != -1) {
+        console.log(this.model.player.players)
+        let player = this.model.player.players.find(p => p.id === id);
+        if(player === undefined) {
+          return '#000000';
+        }
+        return player.color;
+      } else {
+        console.warn("Player id = -1! in clientPlayer");
+        return '#000000';
+      }
+    },
+    getClientName: function () {
+      let id = Number(window.$cookies.get("id"));
+      if (id != -1) {
+        console.log(this.model.player.players)
+        let player = this.model.player.players.find(p => p.id === id);
+        if (player === undefined) {
+          return 'Spectator'
+        }
+        return player.name;
+      } else {
+        console.warn("Player id = -1! in getClientName");
+        return 'Spectator';
+      }
+    },
   },
   watch: {
       name: function() {
@@ -114,6 +148,16 @@ export default{
 <style scoped>
 #close-button {
   position: relative;
+}
+
+.currentPlayerName {
+  background-color: #ffe8b1;
+  border: 2px solid #000000;
+  border-radius: 6px;
+  -webkit-box-shadow: 5px 5px 13px 0px #000000;
+  -moz-box-shadow: 5px 5px 13px 0px #000000;
+  box-shadow: 5px 5px 13px 0px #000000;
+  margin-bottom: 5px;
 }
 
 .game-controls {

@@ -124,6 +124,16 @@ export default new Vuex.Store({
         return null;
       }
     },
+    clientReady(state) {
+      let id = Number(window.$cookies.get("id"));
+      if (id != -1) {
+        let player = state.lobby.player.find(p => p.id === id);
+        return player.ready;
+      } else {
+        console.warn("Player id = -1! in setReady");
+        return -1;
+      }
+    },
     getCurrentTicketType(state) {
       return state.currentTicketType;
     },

@@ -1,5 +1,17 @@
 <template>
   <div id="map-wrapper" ref="map-wrapper" class="map-wrapper">
+    <v-alert
+      style="z-index: 40; margin-top: 3em"
+      v-model="alert"
+      dismissible
+      color="red"
+      border="left"
+      elevation="4"
+      colored-border
+      icon="mdi-alert-circle-outline"
+    >
+      It's not your turn!
+    </v-alert>
     <canvas
       id="canvas"
       v-on:dblclick="movePlayer($event)"
@@ -20,12 +32,25 @@ export default {
   props: {
         playersdata: Object
   },
+  data: function () {
+    return {
+      alert: false
+    };
+  },
   methods: {
        movePlayer: function(event) {
           console.log(this.$store.getters.gameRunning);
           if(!this.$store.getters.gameRunning) {
               return
           }
+
+        const id = Number(window.$cookies.get("id"))
+        if(id === -1 || this.extractCurrentPlayer.id !== id) {
+            //TODO: Show alert
+            this.alert = true
+            return
+        }
+
           const clickCoords = this.getXY(event)
           const ticketType = this.$store.getters.getCurrentTicketType
 
@@ -93,13 +118,32 @@ export default {
             img.src = require('../../assets/map_large.webp')
             img.onload = () => {
                 ctx.drawImage(img,0,0);
+
+                const mrX  = this.playersdata.players[0]
+                const id = Number(window.$cookies.get("id"))
+                if (mrX.isVisible || mrX.id === id) {
+                    ctx.beginPath();
+                    ctx.arc(mrX.x, mrX.y, 26, 0, 2 * Math.PI, false);
+                    ctx.lineWidth = 10;
+                    ctx.strokeStyle = mrX.color;
+                    ctx.stroke();
+                } else if(mrX.lastSeen !== 'never') {
+                    ctx.beginPath();
+                    ctx.arc(mrX.lastSeenX, mrX.lastSeenY, 26, 0, 2 * Math.PI, false);
+                    ctx.lineWidth = 10;
+                    ctx.strokeStyle = '#969696';
+                    ctx.stroke();
+                }
+
                 for (let i = 0; i < this.playersdata.players.length; i++) {
                     const player = this.playersdata.players[i];
-                    ctx.beginPath();
-                    ctx.arc(player.x, player.y, 26, 0, 2 * Math.PI, false);
-                    ctx.lineWidth = 10;
-                    ctx.strokeStyle = player.color;
-                    ctx.stroke();
+                    if (player.name !== 'MrX') {
+                        ctx.beginPath();
+                        ctx.arc(player.x, player.y, 26, 0, 2 * Math.PI, false);
+                        ctx.lineWidth = 10;
+                        ctx.strokeStyle = player.color;
+                        ctx.stroke();
+                    }
                 }
             };
         }
@@ -112,7 +156,17 @@ export default {
     mounted: function() {
         this.handleMapDrag()
         this.redraw()
-    }
+    },
+    computed: {
+      extractCurrentPlayer: function() {
+          for (const player of this.playersdata.players) {
+              if (player.current === true) {
+                return player;
+              }
+          }
+          return null;
+      }
+  },
 };
 </script>
 

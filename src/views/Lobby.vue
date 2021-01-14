@@ -51,7 +51,7 @@
       <div class="col d-flex justify-content-center lobby-bottom-panel">
         <div class="d-flex justify-content-center">
           <button class="standard-button" v-on:click="setPlayerReady">
-            Ready
+            {{ readyButtonText }}
           </button>
         </div>
       </div>
@@ -66,9 +66,20 @@ import { WebsocketMixin } from "@/mixins/websocketMixin.js"
 export default {
   name: "lobby",
   mixins: [WebsocketMixin],
+  data: function () {
+    return {
+      readyButtonText: 'Ready'
+    };
+  },
   methods: {
     setPlayerReady: function() {
-      this.$store.dispatch("setClientPlayerReady");
+      if(this.$store.getters.clientReady) {
+        this.$store.dispatch("setClientPlayerUnReady");
+        this.readyButtonText = 'Ready'
+      } else {
+        this.$store.dispatch("setClientPlayerReady");
+        this.readyButtonText = 'Unready'
+      }
       this.sendPlayerData();
     },
     sendPlayerData: function(){
