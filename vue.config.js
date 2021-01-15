@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: "/",
+  publicPath: "/ScotlandYard",
   devServer: {
     proxy: "http://localhost:9000/init"
   },
