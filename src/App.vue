@@ -41,7 +41,7 @@ export default {
   },
   mounted: function () {
       console.log("MOUNTED")
-      const websocket = new WebSocket("ws://localhost:9000/ws")
+      const websocket = new WebSocket("ws://scotlandyard-server.herokuapp.com/ws")
       this.$store.dispatch("setWebsocket", websocket)
 
       websocket.onerror = () => {
