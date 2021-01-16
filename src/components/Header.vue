@@ -7,6 +7,9 @@
       <v-btn v-on:click="callAbout" to="/about" text>
         <v-icon>mdi-help</v-icon>
       </v-btn>
+      <v-btn v-on:click="callLogout" text>
+        <v-icon>mdi-logout-variant mdi-flip-h</v-icon>
+      </v-btn>
       <v-btn v-on:click="callUndo" v-if="$store.getters.gameRunning" text>
         <v-icon>mdi-undo</v-icon>
       </v-btn>
@@ -33,6 +36,9 @@ export default{
     },
     callAbout: function() {
       this.sendObjectOverWebsocket({id: Number(window.$cookies.get('id'))}, "deregister");
+    },
+    callLogout: function() {
+      location.href = '/signOut'
     },
     callUndo: function () {
       this.sendMessageOverWebsocket("undo")
