@@ -110,6 +110,10 @@ export default {
   display: none;
 }
 
+html {
+  overflow: auto;
+}
+
 #app {
   font-family: Michroma;
   background: url("~@/assets/map_large_small_opacity.webp") no-repeat center
