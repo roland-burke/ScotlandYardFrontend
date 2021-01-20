@@ -13,9 +13,7 @@
       >Connecting to Websocket failed</v-alert
     >
     <Header></Header>
-    <div v-if="isMounted">
-      <router-view :model="model"></router-view>
-    </div>
+    <router-view :model="model"></router-view>
     <Footer></Footer>
   </v-app>
 </template>
@@ -40,8 +38,7 @@ export default {
     this.sendObjectOverWebsocket({id: Number(window.$cookies.get('id'))}, "deregister");
   },
   mounted: function () {
-      console.log("MOUNTED")
-      const websocket = new WebSocket("ws://localhost:9000/ws")
+      const websocket = new WebSocket("wss://scotlandyard-server.herokuapp.com/ws")
       this.$store.dispatch("setWebsocket", websocket)
 
       websocket.onerror = () => {
@@ -50,21 +47,13 @@ export default {
       websocket.onmessage = (rawMessage) => {
           this.websocketError = false
           const message = $.parseJSON(rawMessage.data);
-          console.log(message);
           if (message.event === "ModelChanged") {
               this.model = message;
               this.$store.dispatch("setGameRunning", this.model.gameRunning);
           } else if (message.event === "register") {
               this.handleRegister(message.id);
           } else if (message.event === "lobby-change") {
-              console.log(
-                  "player: " + JSON.stringify(this.$store.getters.lobby.player)
-              );
               this.$store.dispatch("updateLobbyPlayer", message.player);
-              console.log(
-                  "player_after_update: " +
-                  JSON.stringify(this.$store.getters.lobby.player)
-              );
           } else if (message.event === "StartGame") {
               this.$store.dispatch("setGameRunning", true);
               this.$router.push("/game");
@@ -74,6 +63,7 @@ export default {
           }
       };
       websocket.onopen = () => {
+          console.log("ONOPEN");
           this.websocketError = false
           this.isMounted = true;
           setInterval(() => {
@@ -108,6 +98,10 @@ export default {
 
 .v-select__selections input {
   display: none;
+}
+
+html {
+  overflow: auto;
 }
 
 #app {

@@ -60,7 +60,7 @@
       class="row d-flex justify-content-center align-items-center align-self-center"
       style="padding-top: 2em"
     >
-      <a href="/">
+      <a href="/ScotlandYard">
         <button class="standard-button">Main Menu</button>
       </a>
     </div>
