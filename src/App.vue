@@ -13,9 +13,7 @@
       >Connecting to Websocket failed</v-alert
     >
     <Header></Header>
-    <div v-if="isMounted">
-      <router-view :model="model"></router-view>
-    </div>
+    <router-view :model="model"></router-view>
     <Footer></Footer>
   </v-app>
 </template>
@@ -65,6 +63,7 @@ export default {
           }
       };
       websocket.onopen = () => {
+          console.log("ONOPEN");
           this.websocketError = false
           this.isMounted = true;
           setInterval(() => {
