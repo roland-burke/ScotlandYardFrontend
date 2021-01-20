@@ -40,8 +40,7 @@ export default {
     this.sendObjectOverWebsocket({id: Number(window.$cookies.get('id'))}, "deregister");
   },
   mounted: function () {
-      console.log("MOUNTED")
-      const websocket = new WebSocket("ws://scotlandyard-server.herokuapp.com/ws")
+      const websocket = new WebSocket("wss://scotlandyard-server.herokuapp.com/ws")
       this.$store.dispatch("setWebsocket", websocket)
 
       websocket.onerror = () => {
@@ -50,21 +49,13 @@ export default {
       websocket.onmessage = (rawMessage) => {
           this.websocketError = false
           const message = $.parseJSON(rawMessage.data);
-          console.log(message);
           if (message.event === "ModelChanged") {
               this.model = message;
               this.$store.dispatch("setGameRunning", this.model.gameRunning);
           } else if (message.event === "register") {
               this.handleRegister(message.id);
           } else if (message.event === "lobby-change") {
-              console.log(
-                  "player: " + JSON.stringify(this.$store.getters.lobby.player)
-              );
               this.$store.dispatch("updateLobbyPlayer", message.player);
-              console.log(
-                  "player_after_update: " +
-                  JSON.stringify(this.$store.getters.lobby.player)
-              );
           } else if (message.event === "StartGame") {
               this.$store.dispatch("setGameRunning", true);
               this.$router.push("/game");
