@@ -63,7 +63,6 @@ export default {
           }
       };
       websocket.onopen = () => {
-          console.log("ONOPEN");
           this.websocketError = false
           this.isMounted = true;
           setInterval(() => {
