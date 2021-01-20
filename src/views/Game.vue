@@ -122,11 +122,6 @@ export default {
             audio: null,
         }
     },
-    watch: {
-      model: function() {
-        console.log(JSON.stringify(this.model, null, 2)); // spacing level = 2
-      }
-    },
     computed: {
         extractCurrentPlayer: function() {
             for (const player of this.model.player.players) {

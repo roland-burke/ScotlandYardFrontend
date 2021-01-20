@@ -119,7 +119,6 @@ export default {
       }
     },
     onChange: function () {
-      console.log('OnChange');
       this.$store.dispatch("setPlayerColor", this.selected.value);
       this.sendObjectOverWebsocket( {player: this.$store.getters.lobby.player }, "lobby-change");
     },

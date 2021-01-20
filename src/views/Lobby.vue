@@ -93,9 +93,6 @@ export default {
     }
   },
   mounted: function() {
-    console.log('LOBBY MOUNTED')
-    console.log("lobby: " + JSON.stringify(this.$store.getters.lobby));
-    console.log('gameRunning: ' + this.$store.getters.gameRunning);
     if(this.$store.getters.gameRunning) {
       return;
     }
@@ -130,6 +127,6 @@ export default {
   background-color: #abcdef;
   border-radius: 10px;
   border: 2px solid #000000;
-  margin: 1.5em 1.5em 3.5em 1.5em;
+  margin: 1.5em 1.5em 5em 1.5em;
 }
 </style>

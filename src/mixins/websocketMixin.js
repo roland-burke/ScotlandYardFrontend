@@ -7,7 +7,6 @@ export const WebsocketMixin = {
                 data: json
             };
             if (this.$store.getters.getWebsocket.readyState === WebSocket.OPEN) {
-                console.log("send: " + JSON.stringify(obj));
                 this.$store.getters.getWebsocket.send(JSON.stringify(obj));
             } else {
                 console.log("Could not send data. Websocket is not open.");
