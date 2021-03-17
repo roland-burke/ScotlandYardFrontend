@@ -22,9 +22,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: npm install
-      run: npm install
+    - run: npm install
     - name: npm build
-      run: npm run build --if-present
+    - run: npm run build --if-present
       env:
         CI: true
 
@@ -35,7 +35,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Pushes test file
-      uses: roland-burke/ScotlandYardServer@main
+    - uses: roland-burke/ScotlandYardServer@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
