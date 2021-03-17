@@ -32,10 +32,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-    uses: actions/checkout@v2
+      uses: actions/checkout@v2
 
     - name: Pushes test file
-    uses: roland-burke/ScotlandYardServer@main
+      uses: roland-burke/ScotlandYardServer@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
