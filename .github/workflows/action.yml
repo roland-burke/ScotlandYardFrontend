@@ -41,6 +41,7 @@ jobs:
         source_file: 'build/*'
         destination_repo: 'roland-burke/ScotlandYardServer'
         destination_folder: 'public/ScotlandYardFrontend'
+        destination_branch: 'master'
         user_email: 'action@example.com'
         user_name: 'roland-burke'
         commit_message: 'Automatic commit by git action from ScotlandYardFrontend'
