@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Go to Repository
+    - name: Clone Repository
       env:
-        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN }}
       run: |
         git config --global user.email "github@actions.com"
         git config --global user.name "Github Action"
@@ -28,9 +28,7 @@ jobs:
       run: npm run build --if-present
       env:
         CI: true
-    - name: Go to Repository
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+    - name: Copy and Push files
       run: |
         pwd
         ls
