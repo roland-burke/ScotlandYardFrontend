@@ -35,6 +35,9 @@ jobs:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       run: |
         pwd
+        ls
+        cd..
+        ls
         cp build/* ScotlandYardServer/public/ScotlandYardFrontend
         cd ScotlandYardServer
         git add ./public/*
