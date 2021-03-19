@@ -35,6 +35,8 @@ jobs:
       run: |
         pwd
         ls
+        cd ..
+        ls
         cp build/* ScotlandYardServer/public/ScotlandYardFrontend
         cd ScotlandYardServer
         git add ./public/*
