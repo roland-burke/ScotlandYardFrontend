@@ -37,7 +37,7 @@ jobs:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       run: |
         pwd
-        cp ScotlandYardFrontend/build/* ScotlandYardServer/public/ScotlandYardFrontend
+        cp build/* ScotlandYardServer/public/ScotlandYardFrontend
         cd ScotlandYardServer
         git add ./public/*
         git commit -m "Automatic commit by git action from ScotlandYardFrontend"
