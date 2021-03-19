@@ -16,9 +16,7 @@ jobs:
       run: |
         git config --global user.email "github@actions.com"
         git config --global user.name "Github Action"
-        git clone https://${API_TOKEN_GITHUB}:x-oauth-basic@github.com/roland-burke/ScotlandYardFrontend.git
         git clone https://${API_TOKEN_GITHUB}:x-oauth-basic@github.com/roland-burke/ScotlandYardServer.git
-        cd ScotlandYardFrontend
         
     - uses: actions/checkout@v1
     - name: Use Node.js
