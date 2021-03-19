@@ -7,35 +7,37 @@ on:
     
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x]
-
     steps:
+    - uses: actions/checkout@v2
+    - name: Go to Repository
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      run: |
+        git config --global user.email "github@actions.com"
+        git config --global user.name "Github Action"
+        git clone https://${API_TOKEN_GITHUB}:x-oauth-basic@github.com/roland-burke/ScotlandYardFrontend.git
+        git clone https://${API_TOKEN_GITHUB}:x-oauth-basic@github.com/roland-burke/ScotlandYardServer.git
+        cd ScotlandYardFrontend
+        
     - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 12.x
     - name: npm install
       run: npm install
     - name: npm build
       run: npm run build --if-present
       env:
         CI: true
-
-    - name: Pushes test file
-      uses: dmnemec/copy_file_to_another_repo_action@main
+    - uses: actions/checkout@v2
+    - name: Go to Repository
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-      with:
-        source_file: 'build/*'
-        destination_repo: 'roland-burke/ScotlandYardServer'
-        destination_folder: 'public/ScotlandYardFrontend'
-        destination_branch: 'master'
-        user_email: 'action@example.com'
-        user_name: 'roland-burke'
-        commit_message: 'Automatic commit by git action from ScotlandYardFrontend'
+      run: |
+        cp build/* ScotlandYardServer/public/ScotlandYardFrontend
+        cd ScotlandYardServer
+        git add ./public/*
+        git commit -m "Automatic commit by git action from ScotlandYardFrontend"
+        git push origin master
