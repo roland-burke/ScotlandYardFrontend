@@ -28,7 +28,7 @@ jobs:
       run: npm run build --if-present
       env:
         CI: true
-    - name: Copy and Push files
+    - name: Copy and Push dist files
       run: |
         pwd
         ls
