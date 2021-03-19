@@ -34,7 +34,7 @@ jobs:
       run: |
         pwd
         ls
-        cp dist/* ScotlandYardServer/public/ScotlandYardFrontend
+        cp -r dist/* ScotlandYardServer/public/ScotlandYardFrontend
         cd ScotlandYardServer
         git add ./public/*
         git commit -m "Automatic commit by git action from ScotlandYardFrontend"
