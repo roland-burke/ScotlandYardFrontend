@@ -1,11 +1,11 @@
 <template>
   <v-footer id="footer" padless dense fixed>
-    <v-col class="text-center" cols="4">
+    <v-col class="text-center paddingSize" cols="4">
       <a href="https://github.com/tim-koehler/ScotlandYard" target="_blank"
         >ScotlandYard Core</a
       >
     </v-col>
-    <v-col class="text-center" cols="4">
+    <v-col class="text-center paddingSize" cols="4">
       <a
         href="https://github.com/roland-burke/ScotlandYardServer"
         target="_blank"
@@ -13,7 +13,7 @@
       >
     </v-col>
 
-    <v-col class="text-center" cols="4">
+    <v-col class="text-center paddingSize" cols="4">
       <a
         href="https://github.com/roland-burke/ScotlandYardFrontend"
         target="_blank"
@@ -28,3 +28,12 @@ export default ({
   name: "Footer",
 });
 </script>
+
+<style scoped>
+/* If the screen size is 600px wide or less */
+@media screen and (max-width: 750px) {
+  .paddingSize {
+    padding: 0px !important;
+  }
+}
+</style>

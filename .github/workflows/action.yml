@@ -1,0 +1,39 @@
+name: Build and push file
+
+on:
+  push:
+    branches:
+      - master
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Clone Repository
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN }}
+      run: |
+        git config --global user.email "github@actions.com"
+        git config --global user.name "Github Action"
+        git clone https://${API_TOKEN_GITHUB}:x-oauth-basic@github.com/roland-burke/ScotlandYardServer.git
+        
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: npm install
+      run: npm install
+    - name: npm build
+      run: npm run build --if-present
+      env:
+        CI: true
+    - name: Copy and Push dist files
+      run: |
+        pwd
+        ls
+        cp -r dist/* ScotlandYardServer/public/ScotlandYardFrontend
+        cd ScotlandYardServer
+        git add ./public/*
+        git commit -m "Automatic commit by git action from ScotlandYardFrontend"
+        git push origin master

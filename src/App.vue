@@ -13,7 +13,7 @@
       >Connecting to Websocket failed</v-alert
     >
     <Header></Header>
-    <router-view :model="model"></router-view>
+    <router-view :isMounted="isMounted" :model="model"></router-view>
     <Footer></Footer>
   </v-app>
 </template>

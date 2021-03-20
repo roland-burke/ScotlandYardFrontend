@@ -39,7 +39,6 @@ export default {
   },
   methods: {
        movePlayer: function(event) {
-          console.log(this.$store.getters.gameRunning);
           if(!this.$store.getters.gameRunning) {
               return
           }
@@ -60,7 +59,6 @@ export default {
               x: parseInt(clickCoords.x),
               y: parseInt(clickCoords.y)
           }
-          console.log(data);
           this.sendObjectOverWebsocket(data, 'move')
           this.redraw()
         },

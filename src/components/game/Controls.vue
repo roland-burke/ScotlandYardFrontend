@@ -104,7 +104,6 @@ export default {
     getClientColor: function () {
       let id = Number(window.$cookies.get("id"));
       if (id != -1) {
-        console.log(this.model.player.players)
         let player = this.model.player.players.find(p => p.id === id);
         if(player === undefined) {
           return '#000000';
@@ -118,7 +117,6 @@ export default {
     getClientName: function () {
       let id = Number(window.$cookies.get("id"));
       if (id != -1) {
-        console.log(this.model.player.players)
         let player = this.model.player.players.find(p => p.id === id);
         if (player === undefined) {
           return 'Spectator'
@@ -150,14 +148,31 @@ export default {
   position: relative;
 }
 
-.currentPlayerName {
-  background-color: #ffe8b1;
-  border: 2px solid #000000;
-  border-radius: 6px;
-  -webkit-box-shadow: 5px 5px 13px 0px #000000;
-  -moz-box-shadow: 5px 5px 13px 0px #000000;
-  box-shadow: 5px 5px 13px 0px #000000;
-  margin-bottom: 5px;
+/* If the screen size is 601px wide or more */
+@media screen and (min-width: 751px) {
+  .currentPlayerName {
+    background-color: #ffe8b1;
+    border: 2px solid #000000;
+    border-radius: 6px;
+    -webkit-box-shadow: 5px 5px 13px 0px #000000;
+    -moz-box-shadow: 5px 5px 13px 0px #000000;
+    box-shadow: 5px 5px 13px 0px #000000;
+    margin-bottom: 5px;
+  }
+}
+
+/* If the screen size is 600px wide or less */
+@media screen and (max-width: 750px) {
+  .currentPlayerName {
+    background-color: #ffe8b1;
+    border: 2px solid #000000;
+    border-radius: 6px;
+    -webkit-box-shadow: 5px 5px 13px 0px #000000;
+    -moz-box-shadow: 5px 5px 13px 0px #000000;
+    box-shadow: 5px 5px 13px 0px #000000;
+    margin-bottom: 5px;
+    font-size: 90%;
+  }
 }
 
 .game-controls {
@@ -176,9 +191,20 @@ export default {
   display: inline;
 }
 
-.ticket-icon {
-  width: 90px;
-  margin: 5px;
+/* If the screen size is 601px wide or more */
+@media screen and (min-width: 751px) {
+  .ticket-icon {
+    width: 90px;
+    margin: 5px;
+  }
+}
+
+/* If the screen size is 600px wide or less */
+@media screen and (max-width: 750px) {
+  .ticket-icon {
+    width: 70px;
+    margin: 5px;
+  }
 }
 
 .ticket-icon-stats {
