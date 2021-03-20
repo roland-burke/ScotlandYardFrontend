@@ -30,8 +30,6 @@ jobs:
         CI: true
     - name: Copy and Push dist files
       run: |
-        pwd
-        ls
         cp -r dist/* ScotlandYardServer/public/ScotlandYardFrontend
         cd ScotlandYardServer
          
@@ -41,3 +39,4 @@ jobs:
         git add ./public/*
         git commit -m "Automatic commit by git action from ScotlandYardFrontend"
         git push origin master
+        echo "Pushed to downstream"
