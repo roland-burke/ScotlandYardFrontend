@@ -36,7 +36,7 @@ jobs:
         cd ScotlandYardServer
          
         # Exit 0 when no changes were made
-        git status | grep 'Untracked files:' > /dev/null || return 0
+        git status | grep 'Untracked files:' > /dev/null || exit 0
 
         git add ./public/*
         git commit -m "Automatic commit by git action from ScotlandYardFrontend"
