@@ -9,7 +9,7 @@ export const WebsocketMixin = {
             if (this.$store.getters.getWebsocket.readyState === WebSocket.OPEN) {
                 this.$store.getters.getWebsocket.send(JSON.stringify(obj));
             } else {
-                console.log("Could not send data. Websocket is not open.");
+                console.log("Could not send data. Websocket is closed.");
             }
         },
         sendMessageOverWebsocket: function (msg) {
@@ -19,7 +19,7 @@ export const WebsocketMixin = {
             if (this.$store.getters.getWebsocket.readyState === WebSocket.OPEN) {
                 this.$store.getters.getWebsocket.send(JSON.stringify(obj));
             } else {
-                console.log("Could not send data. Websocket is not open.");
+                console.log("Could not send data. Websocket is closed.");
             }
         },
     }
