@@ -30,6 +30,11 @@ export default ({
 </script>
 
 <style scoped>
+
+#footer {
+  border-top: solid rgb(131, 131, 131) 2px;
+}
+
 /* If the screen size is 600px wide or less */
 @media screen and (max-width: 750px) {
   .paddingSize {

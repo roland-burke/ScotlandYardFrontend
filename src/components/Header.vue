@@ -60,7 +60,7 @@ export default{
 #header {
   background-color: #93b2e0;
   box-shadow: 0 0 25px 0 black;
-  position: absolute;
+  position: fixed;
 }
 .title {
   color: #ffffff;

@@ -80,7 +80,6 @@ export default {
 
 <style scoped>
 #about {
-  display: inline-block;
   text-align: left;
   max-width: 90vw;
   margin-top: 3em;
