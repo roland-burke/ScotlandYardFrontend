@@ -112,7 +112,7 @@ input[type="file"] {
     border: 4px solid #000000;
     display: inline-block;
     cursor: pointer;
-    color: #000000;
+    color: #ebebeb;
     font-family: Michroma;
     font-size: 150%;
     font-weight: bold;
