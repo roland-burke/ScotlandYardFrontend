@@ -76,7 +76,7 @@ input[type="file"] {
   border: 2px solid #000000;
   border-radius: 10%;
   padding: 2em 2em;
-  margin-top: 6em;
+  margin-top: 7em;
 }
 
 /* === Buttons === */

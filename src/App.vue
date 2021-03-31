@@ -2,13 +2,11 @@
   <v-app class="main">
     <v-alert
       class="alert"
+      style="position: absolute; width: 100%; z-index: 50;"
       v-if="websocketError"
       border="bottom"
-      dense
       elevation="16"
-      outlined
-      prominent
-      text
+      dense
       type="error"
       >Connecting to Websocket failed</v-alert
     >

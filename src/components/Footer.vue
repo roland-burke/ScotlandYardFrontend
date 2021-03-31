@@ -30,7 +30,6 @@ export default ({
 </script>
 
 <style scoped>
-
 #footer {
   border-top: solid rgb(131, 131, 131) 2px;
 }
